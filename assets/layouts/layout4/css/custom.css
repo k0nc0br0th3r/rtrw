@@ -1,0 +1,4 @@
+/* here you can put your own css to customize and override the theme */
+.timeline-body-content p, .timeline-body-time {
+	font-size: 13px !important;
+}

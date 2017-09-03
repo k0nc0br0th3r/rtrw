@@ -148,7 +148,7 @@
                         <li class="nav-item">
                             <a href="<?php echo site_url('page/help') ?>" class="nav-link">
                                 <i class="icon-support"></i>
-                                <span class="title">Help</span>
+                                <span class="title">Bantuan</span>
                             </a>
                         </li>
                     </ul>
@@ -168,7 +168,7 @@
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
         <div class="page-footer">
-            <div class="page-footer-inner"> 2016 &copy; Desa Tanimulya.
+            <div class="page-footer-inner"> <?php echo set_copyright('2016'); ?> &copy; Desa Tanimulya.
                 <a target="_blank" title="Program by" href="#">IT</a>
             </div>
             <div class="scroll-to-top">

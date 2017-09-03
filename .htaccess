@@ -1,3 +1,5 @@
+php_value date.timezone 'Asia/Jakarta'
+
 php_flag register_globals off
 php_flag magic_quotes_gpc on
 php_value post_max_size 300M

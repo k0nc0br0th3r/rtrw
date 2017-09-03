@@ -18,7 +18,7 @@
                 <div class="portlet-body">
                     <?php echo $this->session->flashdata('pesan') ?>
                     <!-- BEGIN FORM-->
-                    <form id="form" method="post" action="<?php echo site_url('posting/add/'.$this->uri->segment(4)) ?>" class="form-horizontal form-bordered">
+                    <form id="form" method="post" action="<?php echo site_url('posting/add/'.$this->uri->segment(4)) ?>" class="form-horizontal form-bordered" multipart="enctype/form-data">
                         <div class="form-body">
                             <div class="form-group form-md-line-input">
                                 <label class="col-md-3 control-label" for="form_control_1">Judul
@@ -37,6 +37,16 @@
                                 <div class="col-md-9">
                                     <textarea class="form-control" name="deskripsi" id="deskripsi" rows="6"></textarea>
                                     <textarea class="form-control" name="des" id="des" style="display:none"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-md-line-input">
+                                <label class="col-md-3 control-label" for="form_control_1">Gambar
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input type="file" class="form-control" name="file">
+                                    <div class="form-control-focus"> </div>
                                 </div>
                             </div>
                             

@@ -22,7 +22,7 @@
                             <tr>
                                 <th> NO. </th>
                                 <th> Judul </th>
-                                <th> Tipe </th>
+                                <!-- <th> Tipe </th> -->
                                 <th> Status </th>
                                 <th> Tgl entri </th>
                                 <th> Tools </th>
@@ -38,7 +38,7 @@
                             <tr class="odd gradeX">
                                 <td> <?php echo $no ?> </td>
                                 <td> <?php echo $rows['judul'] ?> </td>
-                                <td> <?php echo $tp[$rows['tipe']] ?> </td>
+                                <!-- <td> <?php echo $tp[$rows['tipe']] ?> </td> -->
                                 <td> 
                                     <span class="label label-sm label-<?php echo ($rows['status']==0 ? "success" : "danger" ); ?>"> 
                                     <?php echo $st[$rows['status']] ?> 
@@ -56,8 +56,7 @@
                                                     <i class="icon-note"></i> Edit Berita </a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo site_url('posting/hapus/'.$this->uri->segment(4).'/'.$rows['berita_id']) ?>" 
-                                                onclick="return confirm('apakah anda yakin??')" class="ajaxify">
+                                                <a href="" onclick="return confirm('apakah anda yakin??')" class="ajaxify">
                                                     <i class="icon-trash"></i> Hapus Berita </a>
                                             </li>
                                         </ul>

@@ -1,0 +1,21 @@
+{
+  "name": "Sistem Informasi RTRW",
+  "homepage": "https://github.com/k0nc0br0th3r/rtrw",
+  "authors": [
+    "hikmahtiar.cool <hikmahtiar.cool@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-form": "^4.2.2",
+    "notify": "https://github.com/egig/notify.git"
+  }
+}

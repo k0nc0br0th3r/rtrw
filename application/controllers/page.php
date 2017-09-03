@@ -1,10 +1,21 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Page Controller
+ *
+ */
+
 class Page extends CI_Controller {
 
+	/**
+	 * Contructor Code
+	 */
 	function __construct()
 	{
 		parent::__construct();
+
+		// load model
+		$this->load->model('news_model');
 	}
 
 	// BEGIN PAGE LOGIN
@@ -113,6 +124,65 @@ class Page extends CI_Controller {
 		} else {
 			redirect('welcome');
 		}
+	}
+
+	/**
+	 * Berita Page
+	 *
+	 * @author HIkmahtiar <hikmahtiar.cool@gmail.com>
+	 * @return HTML
+	 */
+	public function news($id = '')
+	{
+		// cek id dari URL
+		if($id == '')
+		{
+			// data
+			$order = 'tgl_entri DESC';
+			$get_data = $this->news_model->get_data_advance('', '', '', $order, 6, 0)->result();
+			$konten = 'frontend/page/index';
+
+		}
+		else
+		{
+			$get_data = $this->news_model->get_data_advance($id)->row();
+			$konten = 'frontend/page/detail';
+		}
+		
+		// data template
+		$data['get_data'] = $get_data;
+		$data['konten'] = $konten;
+		$this->load->view('template', $data);
+		$this->load->view('footer/foot_beranda');
+	}
+
+	/**
+	 * Berita Page
+	 *
+	 * @author HIkmahtiar <hikmahtiar.cool@gmail.com>
+	 * @return HTML
+	 */
+	public function info()
+	{
+		$data['konten'] = 'frontend/info/index';
+
+		$this->load->view('template', $data);
+		$this->load->view('footer/foot_beranda');
+
+	}
+
+	/**
+	 * Help Page
+	 *
+	 * @author HIkmahtiar <hikmahtiar.cool@gmail.com>
+	 * @return HTML
+	 */
+	public function help()
+	{
+		$data['konten'] = 'frontend/help/index';
+
+		$this->load->view('template', $data);
+		$this->load->view('footer/foot_beranda');
 	}
 
 }

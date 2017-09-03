@@ -29,12 +29,27 @@
     <link href="<?php echo base_url() ?>assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
     <link href="<?php echo base_url() ?>assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
+    
+    <!-- notify -->
+    <link href="<?php echo base_url('bower_components/notify/notify.css') ?>" rel="stylesheet" type="text/css" />
+    
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="<?php echo base_url() ?>assets/layouts/layout4/css/layout.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url() ?>assets/layouts/layout4/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
     <link href="<?php echo base_url() ?>assets/layouts/layout4/css/custom.css" rel="stylesheet" type="text/css" />
+    
+    <!-- custom css -->
+    <link href="<?php echo base_url('assets/apps/css/admin/style.css') ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url() ?>assets/layouts/layout4/css/custom.css" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico" />
+    
+    <script type="text/javascript">
+        window.APP = {
+            siteUrl :"<?php echo site_url(); ?>",
+            baseUrl : "<?php echo base_url(); ?>"
+        }
+    </script>
 </head>
 <!-- END HEAD -->
 
@@ -205,7 +220,7 @@
                         <h3 class="uppercase">Posting</h3>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo site_url('posting/index/list/0') ?>" class="ajaxify nav-link">
+                        <a href="<?php echo site_url('news') ?>" class="ajaxify nav-link news-back">
                             <i class="icon-layers"></i>
                             <span class="title">Berita</span>
                         </a>
@@ -322,6 +337,13 @@
     <script src="<?php echo base_url() ?>assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url() ?>assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
+    
+    <!-- notify -->
+    <script src="<?php echo base_url('bower_components/notify/notify.js') ?>" type="text/javascript"></script>
+    
+    <!-- Ajax Form -->
+    <script src="<?php echo base_url('bower_components/jquery-form/dist/jquery.form.min.js') ?>" type="text/javascript"></script>    
+    
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <script src="<?php echo base_url() ?>assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
     <script src="<?php echo base_url() ?>assets/global/plugins/jquery-idle-timeout/jquery.idletimeout.js" type="text/javascript"></script>

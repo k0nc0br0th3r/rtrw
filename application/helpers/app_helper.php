@@ -192,7 +192,7 @@ function tbl_alt_admin() {
             endif;
             ?>
                 <li>
-                    <a href="<?php echo site_url('posting/index/add/0') ?>" class="ajaxify_mn">
+                    <a href="<?php echo site_url('news/edit/new') ?>" class="ajaxify_mn">
                         <i class="icon-tag"></i> Berita baru </a>
                 </li>
                 <li>
@@ -204,5 +204,173 @@ function tbl_alt_admin() {
     </div>
 	<?php
 }
+
+/**
+ * Get User by Id
+ *
+ * @author Hikmahtiar <hikmahtiar.cool@gmail.com>
+ */
+function get_user($id, $show)
+{
+	$ci =& get_instance();
+
+	$ci->load->model('m_user');
+
+	$where = [
+		'u.user_id' => $id
+	];
+
+	$get_user = $ci->m_user->getData($where)->row_array();
+
+	if($get_user)
+	{
+		if(array_key_exists($show, $get_user))
+		{
+			return $get_user[$show];
+		}
+	}
+
+	return '';
+
+}
+
+/**
+ * Get Copyright
+ *
+ * @author Hikmahtiar <hikmahtiar.cool@gmail.com>
+ */
+function set_copyright($year = '')
+{
+	$y = date('Y');
+
+	// bila tahun di isi 
+	if($year != '')
+	{
+		// bila tahun yg di isi = tahun skrg
+		// maka muncul tahun skrg
+		// sebaliknya memunculkan tahun dibuat s/d tahun skrg
+		if($year == $y)
+		{
+			return $y;
+		}
+		else
+		{
+			return $year.' - '. $y;
+		}
+	}
+	return $y;
+}
+
+/**
+ * Status
+ */
+function get_status($id = '')
+{
+	$data = [
+		0 => 'Tidak Aktif',
+		1 => 'Aktif'
+	];
+	
+	if($id != '')
+	{
+		return $data[$id];
+	}
+	return $data;
+}
+
+/**
+ * Check array key exist
+ */
+function check_array_exists($array, $key)
+{
+	if(array_key_exists($key, $array))
+	{
+		return $array[$key];
+	}
+	return '';
+}
+
+/**
+ * Output JSON
+ */
+function output_json($array)
+{
+	$ci =& get_instance();
+	return $ci->output->set_output(json_encode($array));
+}
+
+/**
+ * Helper untuk upload via Codeigniter
+ */
+function upload_file($path=null, $name=null, $rename=null, $allowed_types = '')
+{
+	$ci =& get_instance();
+	
+    ini_set('memory_limit','960M');
+    ini_set('post_max_size','2084M');
+    ini_set('upload_max_filesize', '2084M');
+    $config['upload_path'] = $path;
+
+    $allow = '*';
+
+    if($allowed_types != '')
+    {
+        $allow = $allowed_types;
+    }
+    $config['allowed_types'] = $allow;
+    //$config['max_size'] = '6400000';
+
+    if($rename!=null) {
+        $config['file_name'] = $rename;
+    }
+    $ci->load->library('upload',$config);
+    if(!$ci->upload->do_upload($name)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+ /**
+  * Direktory Upload
+  *
+  * @return array
+  */
+ function dir_upload($dir, $show = '')
+ {
+ 	$folder = $dir;
+ 	$link = base_url().$folder;
+ 	$path = FCPATH.$folder;
+	
+	$data = [
+ 		'path' => $path,
+ 		'link' => $link
+ 	];
+	
+	if($show != '')
+	{
+		if(array_key_exists($show, $data))
+		{
+			return $data[$show];
+		}
+		
+		return '';
+	}
+ 	
+ 	return $data;
+ }
+ 
+ /**
+  * cek file exist and not null
+  */
+ function check_file($path, $file) 
+ {
+	if(file_exists($path.$file) && ($file != ''))
+	{
+		return true;
+	} 
+	
+	return false;
+ }
 
 ?>

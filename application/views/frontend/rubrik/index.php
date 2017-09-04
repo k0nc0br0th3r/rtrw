@@ -39,7 +39,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <h4>Silahkan isi data dibawah ini,  untuk mengirim Rubrik ke Desa.</h4>
+                                        <div class="alert alert-info">
+                                            Silahkan isi data dibawah ini,  untuk mengirim Rubrik ke Desa.
+                                        </div>
                                     </div>
                                 </div>
                                 

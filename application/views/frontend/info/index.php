@@ -3,7 +3,7 @@
     <div class="page-head">
         <!-- BEGIN PAGE TITLE -->
         <div class="page-title">
-            <h1>Pengumuman
+            <h1> Pengumuman
                 <small></small>
             </h1>
         </div>
@@ -23,82 +23,58 @@
     <div class="blog-page blog-content-1">
         <div class="row">
 
-            <div class="col-md-6">
-                <div class="blog-post-lg bordered blog-container">
-                    <div class="blog-img-thumb" style="max-height: 250px;">
-                        <a href="javascript:;">
-                            <img src="<?php echo base_url() ?>assets/pages/img/page_general_search/5.jpg" />
-                        </a>
-                    </div>
-                    <div class="blog-post-content">
-                        <h2 class="blog-title blog-post-title">
-                            <a href="javascript:;">Metronic Blog Post</a>
-                        </h2>
-                        <p class="blog-post-desc"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
-                            suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit </p>
-                        <div class="blog-post-foot">
-                            <ul class="blog-post-tags">
-                                <li class="uppercase">
-                                    <a href="javascript:;">Bootstrap</a>
-                                </li>
-                                <li class="uppercase">
-                                    <a href="javascript:;">Sass</a>
-                                </li>
-                                <li class="uppercase">
-                                    <a href="javascript:;">HTML</a>
-                                </li>
-                            </ul>
-                            <div class="blog-post-meta">
-                                <i class="icon-calendar font-blue"></i>
-                                <a href="javascript:;">Oct 24, 2015</a>
+            <?php if($get_data): ?>
+                <?php  foreach($get_data as $row_data): ?>
+                
+
+                    <div class="col-md-6">
+                        <div class="blog-post-lg bordered blog-container" style="border: 1px solid #DDD;">
+                            <div class="blog-img-thumb" style="max-height: 250px;">
+                                <a href="<?php echo site_url('page/info/'.$row_data->pengumuman_id); ?>">
+                                    <?php
+                                    // cek file gambar
+                                    $link = dir_upload(show_config('dir_upload_info'), 'link'); 
+                                    $path = dir_upload(show_config('dir_upload_info'), 'path');
+                                    
+                                    ?>
+                                    <div class="blog-single-img">
+                                    <?php if(check_file($path, $row_data->gambar)): ?>
+                                            <img class="img img-responsive" src="<?php echo $link.$row_data->gambar; ?>" />
+                                    <?php else: ?>
+                                        <img src="<?php echo base_url() ?>assets/pages/img/no_image.jpg" />
+                                    <?php endif; ?>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="blog-post-meta">
-                                <i class="icon-bubble font-blue"></i>
-                                <a href="javascript:;">14 Comments</a>
+                            <div class="blog-post-content">
+                                <h2 class="blog-title blog-post-title">
+                                    <a href="<?php echo site_url('page/info/'.$row_data->pengumuman_id); ?>">
+                                        <?php echo $row_data->judul; ?>
+                                    </a>
+                                </h2>
+                                <p class="blog-post-desc"> 
+                                    <?php echo substr($row_data->deskripsi, 0, 150); ?> 
+                                </p>
+                                <div class="blog-post-foot">
+                                    <div class="blog-post-meta">
+                                        <i class="icon-user font-blue"></i>
+                                        <a href="javascript:;">
+                                            <?php echo get_user($row_data->user_id,  'nama_lgkp'); ?>
+                                        </a>
+
+                                        &nbsp;&nbsp;
+                                        <i class="icon-calendar font-blue"></i>
+                                        <a href="javascript:;">
+                                            <?php echo convert_tanggal($row_data->tgl_entri); ?>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="col-md-6">
-
-                <div class="blog-post-lg bordered blog-container">
-                    <div class="blog-img-thumb" style="max-height: 250px;">
-                        <a href="javascript:;">
-                            <img src="<?php echo base_url() ?>assets/pages/img/page_general_search/05.jpg" />
-                        </a>
-                    </div>
-                    <div class="blog-post-content">
-                        <h2 class="blog-title blog-post-title">
-                            <a href="javascript:;">New Metronic Features</a>
-                        </h2>
-                        <p class="blog-post-desc"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
-                            suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit </p>
-                        <div class="blog-post-foot">
-                            <ul class="blog-post-tags">
-                                <li class="uppercase">
-                                    <a href="javascript:;">Bootstrap</a>
-                                </li>
-                                <li class="uppercase">
-                                    <a href="javascript:;">Sass</a>
-                                </li>
-                                <li class="uppercase">
-                                    <a href="javascript:;">HTML</a>
-                                </li>
-                            </ul>
-                            <div class="blog-post-meta">
-                                <i class="icon-calendar font-blue"></i>
-                                <a href="javascript:;">Oct 22, 2015</a>
-                            </div>
-                            <div class="blog-post-meta">
-                                <i class="icon-bubble font-blue"></i>
-                                <a href="javascript:;">8 Comments</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
         
         </div>
     </div>

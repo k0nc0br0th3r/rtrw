@@ -13,3 +13,6 @@ application/logs/*
 
 /uploads/info/*
 !uploads/info/.gitkeep
+
+/uploads/statis/*
+!uploads/statis/.gitkeep

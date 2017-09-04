@@ -3,7 +3,7 @@
     <div class="page-head">
         <!-- BEGIN PAGE TITLE -->
         <div class="page-title">
-            <h1>Berita
+            <h1> Pengumuman
                 <small></small>
             </h1>
         </div>
@@ -19,7 +19,7 @@
                 <i class="fa fa-circle"></i>
             </li>
             <li>
-                <a href="<?php echo site_url('page/news') ?>">Berita</a>
+                <a href="<?php echo site_url('page/info') ?>">Pengumuman</a>
                 <i class="fa fa-circle"></i>
             </li>
             <li>
@@ -37,35 +37,25 @@
                             <?php echo $get_data->judul; ?>
                             </h1>                                
                         </div>
+                        <div class="blog-single-img">
                         <?php
                         // cek file gambar
-                        $link = dir_upload(show_config('dir_upload_news'), 'link'); 
-                        $path = dir_upload(show_config('dir_upload_news'), 'path');
+                        $link = dir_upload(show_config('dir_upload_info'), 'link'); 
+                        $path = dir_upload(show_config('dir_upload_info'), 'path');
                         
                         ?>
                         <?php if(check_file($path, $get_data->gambar)): ?>
                             <div class="blog-single-img">
                                 <img class="img img-responsive" src="<?php echo $link.$get_data->gambar; ?>" />
                             </div>
-                        <?php endif; ?> 
+                        <?php endif; ?>  
+                        </div>
                         <div class="blog-single-desc">
                             <p> 
                             <?php echo $get_data->deskripsi; ?>
                             </p>
                         </div>
-                        <!-- <div class="blog-single-foot">
-                            <ul class="blog-post-tags">
-                                <li class="uppercase">
-                                    <a href="javascript:;">Bootstrap</a>
-                                </li>
-                                <li class="uppercase">
-                                    <a href="javascript:;">Sass</a>
-                                </li>
-                                <li class="uppercase">
-                                    <a href="javascript:;">HTML</a>
-                                </li>
-                            </ul>
-                        </div> -->
+                        
                         <div class="blog-single-foot">
                             
                             <div class="blog-post-meta">

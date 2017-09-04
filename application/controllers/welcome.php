@@ -21,7 +21,8 @@ class Welcome extends CI_Controller
 		// load model
 		$this->load->model('supermodel');
 		$this->load->model('info_model');
-        $this->load->model('news_model');
+		$this->load->model('news_model');
+        $this->load->model('statis_model');
 	}
 
 	/**
@@ -33,14 +34,17 @@ class Welcome extends CI_Controller
 	{
 		// data
 		$order = 'tgl_entri DESC';
+		$judul_statis = 'Sekilas Desa';
 		$get_data_news = $this->news_model->get_data_advance('', '', 1, '', $order, 2, 0)->result(); 
-		$get_data_info = $this->info_model->get_data_advance('', '', 1, '', $order, 6, 0)->result(); 
+		$get_data_info = $this->info_model->get_data_advance('', '', 1, '', $order, 4, 0)->result(); 
+		$get_data_statis = $this->statis_model->get_data_advance('', $judul_statis, '', $order)->row(); 
 		
 		
 		// view
 		$data['konten'] = "frontend/beranda";
 		$data['data_news'] = $get_data_news;
 		$data['data_info'] = $get_data_info;
+		$data['data_statis'] = $get_data_statis;
 		
 		$this->load->view('template', $data);
 		$this->load->view('footer/foot_beranda');

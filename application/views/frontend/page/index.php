@@ -31,12 +31,19 @@
                         <div class="blog-post-lg bordered blog-container" style="border: 1px solid #DDD;">
                             <div class="blog-img-thumb" style="max-height: 250px;">
                                 <a href="<?php echo site_url('page/news/'.$row_data->berita_id); ?>">
-                                    <!-- cek gambar -->
-                                    <?php if($row_data->gambar != ''): ?>
-                                        <img src="<?php echo dir_upload('uploads/news/', 'link').$row_data->gambar; ?>" />
+                                    <?php
+                                    // cek file gambar
+                                    $link = dir_upload(show_config('dir_upload_news'), 'link'); 
+                                    $path = dir_upload(show_config('dir_upload_news'), 'path');
+                                    
+                                    ?>
+                                    <div class="blog-single-img">
+                                    <?php if(check_file($path, $row_data->gambar)): ?>
+                                            <img class="img img-responsive" src="<?php echo $link.$row_data->gambar; ?>" />
                                     <?php else: ?>
                                         <img src="<?php echo base_url() ?>assets/pages/img/no_image.jpg" />
                                     <?php endif; ?>
+                                    </div>
                                 </a>
                             </div>
                             <div class="blog-post-content">
@@ -61,10 +68,6 @@
                                             <?php echo convert_tanggal($row_data->tgl_entri); ?>
                                         </a>
                                     </div>
-                                    <!-- <div class="blog-post-meta">
-                                        <i class="icon-bubble font-blue"></i>
-                                        <a href="javascript:;">14 Comments</a>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>

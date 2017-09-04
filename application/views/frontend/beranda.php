@@ -76,15 +76,35 @@
             </div>
             
             <div class="col-lg-6">
+                
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="blog-banner blog-container" style="background-image:url(<?php echo base_url() ?>assets/pages/img/background/7.jpg);">
-                            <h2 class="blog-title blog-banner-title">
-                                <a href="javascript:;">Sekilas Desa Tanimulya</a>
-                            </h2>
-                        </div>
+                        <?php if($data_statis) : ?>
+                            
+                            <?php 
+                            // cek file statis untuk background
+                            $link = dir_upload(show_config('dir_upload_statis'), 'link'); 
+                            $path = dir_upload(show_config('dir_upload_statis'), 'path');
+                            $style_statis = base_url().'assets/pages/img/background/7.jpg';
+                            
+                            if(check_file($path, $data_statis->foto))
+                            {
+                                $style_statis = $link.$data_statis->foto;
+                            }
+                            ?>
+                            
+                            <div class="blog-banner blog-container" style="background-image:url(<?php echo $style_statis; ?>)">
+                                <h2 class="blog-title blog-banner-title">
+                                    <a href="<?php echo site_url('statis/page?id='.$data_statis->statis_id); ?>">
+                                        <?php echo $data_statis->judul; ?>
+                                    </a>
+                                </h2>
+                            </div>
+                        <?php endif; ?>
+                        
                     </div>
                 </div>
+                
                 <div class="row">
                     
                     <?php if($data_info) : ?>
@@ -92,9 +112,9 @@
                         
                     
                             <div class="col-sm-6">
-                                <div class="blog-post-sm bordered blog-container">
+                                <div class="blog-post-sm bordered blog-container" style="border: 1px solid #DDD;">
                                     <div class="blog-img-thumb" style="max-height: 150px;">
-                                        <a href="javascript:;">
+                                        <a href="<?php echo site_url('page/info/'.$row_info->pengumuman_id); ?>">
                                             <?php
                                             $link = dir_upload(show_config('dir_upload_info'), 'link'); 
                                             $path = dir_upload(show_config('dir_upload_info'), 'path');
@@ -109,7 +129,7 @@
                                     </div>
                                     <div class="blog-post-content">
                                         <h2 class="blog-title blog-post-title">
-                                            <a href="javascript:;">
+                                            <a href="<?php echo site_url('page/info/'.$row_info->pengumuman_id); ?>">
                                                 <?php echo $row_info->judul; ?>
                                             </a>
                                         </h2>

@@ -16,6 +16,7 @@ class Page extends CI_Controller {
 
 		// load model
 		$this->load->model('news_model');
+		$this->load->model('info_model');
 	}
 
 	// BEGIN PAGE LOGIN
@@ -162,10 +163,26 @@ class Page extends CI_Controller {
 	 * @author HIkmahtiar <hikmahtiar.cool@gmail.com>
 	 * @return HTML
 	 */
-	public function info()
+	public function info($id = '')
 	{
-		$data['konten'] = 'frontend/info/index';
+		// cek id dari URL
+		if($id == '')
+		{
+			// data
+			$order = 'tgl_entri DESC';
+			$get_data = $this->info_model->get_data_advance('', '', 1, '', $order, 6, 0)->result();
+			$konten = 'frontend/info/index';
 
+		}
+		else
+		{
+			$get_data = $this->info_model->get_data_advance($id)->row();
+			$konten = 'frontend/info/detail';
+		}
+		
+		// view
+		$data['get_data'] = $get_data;
+		$data['konten'] = $konten;
 		$this->load->view('template', $data);
 		$this->load->view('footer/foot_beranda');
 

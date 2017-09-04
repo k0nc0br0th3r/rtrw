@@ -42,15 +42,20 @@
                     <div class="blog-single-desc">
                         <?php echo $row['deskripsi'] ?>
                     </div>
-                    <div class="blog-single-foot">
-                        <span style="padding-right:10px;">
-                            <i class="icon-calendar font-blue"></i>
-                            <a href="javascript:;"><?php echo convert_tanggal($row['tgl_entri']) ?></a>
-                        </span>
-                        <span style="padding-right:10px;">
+                    <div class="blog-single-foot">                        
+                        <div class="blog-post-meta">
                             <i class="icon-user font-blue"></i>
-                            <a href="javascript:;"><?php echo $row['nama_lgkp'] ?></a>
-                        </span>
+                            <a href="javascript:;">
+                                <?php echo $row['nama_lgkp'] ?>
+                            </a>
+
+                            &nbsp;&nbsp;
+                            <i class="icon-calendar font-blue"></i>
+                            <a href="javascript:;">
+                                <?php echo convert_tanggal($row['tgl_entri']) ?>
+                            </a>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

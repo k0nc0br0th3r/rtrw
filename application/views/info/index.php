@@ -6,11 +6,11 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class=" icon-layers font-green"></i>
-                    <span class="caption-subject font-green sbold uppercase">List Berita</span>
+                    <span class="caption-subject font-green sbold uppercase">List Pengumuman</span>
                 </div>
                 <div class="actions">
                     <a class="btn btn-default ajaxify" href="<?php echo site_url('news/edit/new') ?>">
-                        <i class="icon-user-follow"></i> Tambah Berita
+                        <i class="icon-user-follow"></i> Tambah Pengumuman
                     </a>
                 </div>
             </div>
@@ -22,10 +22,6 @@
                             <th> Judul </th>
                             <th> Gambar </th>
                             <!-- <th> Tipe </th> -->
-                            <!-- jika user id kosong berarti dia admin -->
-                            <?php if($user_id == '') : ?>
-                                <th> Author </th>
-                            <?php endif; ?>
                             <th> Status </th>
                             <th> Tgl entri </th>
                             <th> Tools </th>
@@ -49,10 +45,6 @@
                                     <img src="<?php echo $dir_upload['link'].$rows['gambar']; ?>" style="width: 100px;"/>
                                 <?php endif; ?>
                             </td>
-                            <!-- jika user id kosong berarti dia admin -->
-                            <?php if($user_id == '') : ?>
-                                <td> <?php echo get_user($rows['user_id'], 'nama_lgkp'); ?> </td>
-                            <?php endif; ?>
                             <!-- <td> <?php echo $tp[$rows['tipe']] ?> </td> -->
                             <td> 
                                 <span class="label label-sm label-<?php echo ($rows['status']==0 ? "danger" : "success" ); ?>"> 
@@ -67,12 +59,12 @@
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="<?php echo site_url('news/edit/'.$rows['berita_id']) ?>" class="ajaxify">
-                                                <i class="icon-note"></i> Edit Berita </a>
+                                            <a href="<?php echo site_url('news/edit/'.$rows['pengumuman_id']) ?>" class="ajaxify">
+                                                <i class="icon-note"></i> Edit Pengumuman </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" class="news-delete" data-id="<?php echo $rows['berita_id']; ?>">
-                                                <i class="icon-trash"></i> Hapus Berita 
+                                            <a href="javascript:;" class="news-delete" data-id="<?php echo $rows['pengumuman_id']; ?>">
+                                                <i class="icon-trash"></i> Hapus Pengumuman 
                                             </a>
                                         </li>
                                     </ul>

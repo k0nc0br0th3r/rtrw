@@ -10,3 +10,6 @@ application/logs/*
 
 /uploads/news/*
 !uploads/news/.gitkeep
+
+/uploads/info/*
+!uploads/info/.gitkeep

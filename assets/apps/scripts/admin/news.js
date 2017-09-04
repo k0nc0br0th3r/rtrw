@@ -11,7 +11,9 @@ window.NEWS = (function($) {
             var parentThis = this;
             
             // validate
-            $(parentThis.elForm).validate()
+            $(parentThis.elForm).validate({
+                errorElement : 'div'
+            });
             
             // ajaxform
             $(parentThis.elForm).ajaxForm({

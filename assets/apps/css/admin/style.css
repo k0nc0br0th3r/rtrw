@@ -1,4 +1,4 @@
-label.error {
-    margin-top: -10px;
+div.error {
     color: red !important;
+    font-size: 11px;
 }

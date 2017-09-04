@@ -1,11 +1,11 @@
 <?php 
 /**
- * News Controller
+ * Info / Pengumuman Controller
  * 
  * @author Hikmahtiar <hikmahtiar.cool@gmail.com>
  */
 
-class News extends CI_Controller
+class Info extends CI_Controller
 {
     /**
      * Consturctor Codeigniter
@@ -18,7 +18,7 @@ class News extends CI_Controller
 		}
         
         // load model
-        $this->load->model('news_model');
+        $this->load->model('info_model');
     }
     
     /**
@@ -28,7 +28,7 @@ class News extends CI_Controller
      */
     private function dir_upload()
     {
-        $folder = 'uploads/news/';
+        $folder = 'uploads/info/';
         return dir_upload($folder);
     }
     
@@ -38,23 +38,13 @@ class News extends CI_Controller
     public function index()
     {
         // get data
-        $user_id = $this->session->userdata('user_id');
         $order = 'tgl_entri DESC';
-        
-        // jika level 0 tampil semua 
-        // jika bukan tampil sesuai user yg login
-        if(get_user($user_id, 'level') == 0)
-        {
-            $user_id = '';
-        }
-        
-        $get_data = $this->news_model->get_data_advance('' , '', '', $user_id, $order)->result_array();
+        $get_data = $this->info_model->get_data_advance('' , '', '', $order)->result_array();
         
         // view
         $data['listdata'] = $get_data;
-        $data['user_id'] = $user_id;
         $data['dir_upload'] = $this->dir_upload();
-        $this->load->view('news/index', $data);
+        $this->load->view('info/index', $data);
     }
     
     /**
@@ -63,7 +53,7 @@ class News extends CI_Controller
     public function edit($id = '')
     {
         // get data
-        $get_data = $this->news_model->get_data_advance($id)->row_array();
+        $get_data = $this->info_model->get_data_advance($id)->row_array();
         
         // view
         $data['id'] = $id;
@@ -122,7 +112,7 @@ class News extends CI_Controller
                 }
             }
             
-            $save = $this->news_model->save($data_save);
+            $save = $this->info_model->save($data_save);
         }
         else
         {
@@ -146,7 +136,7 @@ class News extends CI_Controller
                 {
                     
                      // get data
-                     $get_data_one = $this->news_model->get_data_advance($id)->row();
+                     $get_data_one = $this->info_model->get_data_advance($id)->row();
                      $gambar_ = ($get_data_one) ? $get_data_one->gambar : '';
                      
                      // cek jika ada gambar maka hapus
@@ -159,7 +149,7 @@ class News extends CI_Controller
                 }
             }
             
-            $save = $this->news_model->update($data_save, $id);
+            $save = $this->info_model->update($data_save, $id);
         }
         
         // cek simpan data untuk response notify.js
@@ -190,11 +180,11 @@ class News extends CI_Controller
         $id = $this->input->post('id');
         $dir_upload = $this->dir_upload();
 
-        $get_data_one = $this->news_model->get_data_advance($id)->row();
+        $get_data_one = $this->info_model->get_data_advance($id)->row();
         $gambar_ = ($get_data_one) ? $get_data_one->gambar : '';
         
         // delete
-        $delete = $this->news_model->delete($id);
+        $delete = $this->info_model->delete($id);
         
         // cek hapus data untuk response notify.js
         if($delete)

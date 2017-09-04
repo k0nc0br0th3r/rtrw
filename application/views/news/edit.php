@@ -26,8 +26,8 @@
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="judul" name="judul" value="<?php echo check_array_exists($rowdat, 'judul')?>" required="required">
-                                    <div class="form-control-focus"> </div>                                    
+                                    <input type="text" class="form-control form-control-focus" placeholder="judul" name="judul" value="<?php echo check_array_exists($rowdat, 'judul')?>" required="required">
+                                    <!-- <div class="form-control-focus"> </div>                                     -->
                                 </div>
                             </div>
                             
@@ -49,7 +49,7 @@
                             
                             <div class="form-group form-md-line-input">
                                 <label class="col-md-3 control-label" for="form_control_1"> Gambar
-                                    <span class="required">*</span>
+                                    <!-- <span class="required">*</span> -->
                                 </label>
                                 <div class="col-md-9">
                                     <input type="file" class="form-control" placeholder="judul" name="gambar">
@@ -80,7 +80,7 @@
                                         </option>
                                     <?php endforeach; ?>
                                     </select>
-                                    <div class="form-control-focus"> </div>
+                                    <!-- <div class="form-control-focus"> </div> -->
                                 </div>
                             </div>
                         </div>

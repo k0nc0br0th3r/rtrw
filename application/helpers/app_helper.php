@@ -196,7 +196,7 @@ function tbl_alt_admin() {
                         <i class="icon-tag"></i> Berita baru </a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url('posting/index/add/1') ?>" class="ajaxify_mn">
+                    <a href="<?php echo site_url('info/edit/new') ?>" class="ajaxify_mn">
                         <i class="icon-note"></i> Pengumuman baru </a>
                 </li>
             </ul>

@@ -70,12 +70,8 @@ window.RUBRIK = (function($) {
                 var _this = this;
                 
                 // merubah img captcha
-                // $(parentThis.elImgCaptcha).attr('src', $(_this).attr('href'));
-                $(parentThis.elImgCaptcha).remove();
-                
-                // create ulang captcha
                 d = new Date();
-                $(parentThis.elReloadImgCaptcha).before(' <img class="rubrik-captcha" src="'+ $(_this).attr('href') +'?'+d.getTime()+'"> ');
+                $(parentThis.elImgCaptcha).attr('src', $(_this).attr('href') + '?' + d.getTime());
             });
         }
         

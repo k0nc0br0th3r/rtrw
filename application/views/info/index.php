@@ -9,19 +9,23 @@
                     <span class="caption-subject font-green sbold uppercase">List Pengumuman</span>
                 </div>
                 <div class="actions">
-                    <a class="btn btn-default ajaxify" href="<?php echo site_url('news/edit/new') ?>">
+                    <a class="btn btn-default ajaxify" href="<?php echo site_url('info/edit/new') ?>">
                         <i class="icon-user-follow"></i> Tambah Pengumuman
                     </a>
                 </div>
             </div>
             <div class="portlet-body">
-                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="news-table">
+                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="info-table">
                     <thead>
                         <tr>
                             <th> NO. </th>
                             <th> Judul </th>
                             <th> Gambar </th>
                             <!-- <th> Tipe </th> -->
+                            <!-- jika user id kosong berarti dia admin -->
+                            <?php if($user_id == '') : ?>
+                                <th> Author </th>
+                            <?php endif; ?>
                             <th> Status </th>
                             <th> Tgl entri </th>
                             <th> Tools </th>
@@ -45,6 +49,10 @@
                                     <img src="<?php echo $dir_upload['link'].$rows['gambar']; ?>" style="width: 100px;"/>
                                 <?php endif; ?>
                             </td>
+                            <!-- jika user id kosong berarti dia admin -->
+                            <?php if($user_id == '') : ?>
+                                <td> <?php echo get_user($rows['user_id'], 'nama_lgkp'); ?> </td>
+                            <?php endif; ?>
                             <!-- <td> <?php echo $tp[$rows['tipe']] ?> </td> -->
                             <td> 
                                 <span class="label label-sm label-<?php echo ($rows['status']==0 ? "danger" : "success" ); ?>"> 
@@ -59,11 +67,11 @@
                                     </button>
                                     <ul class="dropdown-menu" role="menu">
                                         <li>
-                                            <a href="<?php echo site_url('news/edit/'.$rows['pengumuman_id']) ?>" class="ajaxify">
+                                            <a href="<?php echo site_url('info/edit/'.$rows['pengumuman_id']) ?>" class="ajaxify">
                                                 <i class="icon-note"></i> Edit Pengumuman </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" class="news-delete" data-id="<?php echo $rows['pengumuman_id']; ?>">
+                                            <a href="javascript:;" class="info-delete" data-id="<?php echo $rows['pengumuman_id']; ?>">
                                                 <i class="icon-trash"></i> Hapus Pengumuman 
                                             </a>
                                         </li>
@@ -85,8 +93,8 @@
 </div>
 
 <!-- END CONTENT HEADER -->
-<script src="<?php echo base_url('assets/apps/scripts/admin/news.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/apps/scripts/admin/info.js') ?>" type="text/javascript"></script>
 <script type="text/javascript">
-    window.NEWS.handleDelete();
-    $("#news-table").dataTable({"bStateSave": true});
+    window.INFO.handleDelete();
+    $("#info-table").dataTable({"bStateSave": true});
 </script>

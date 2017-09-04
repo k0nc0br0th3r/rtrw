@@ -6,13 +6,15 @@ class Info_model extends CI_Model
 {
 	var $table = 'pengumuman';
 	var $table_id = 'pengumuman_id';
+	
+	var $user_id = 'user_id';
 	var $judul = 'judul';
 	var $status = 'status';
 	
 	/**
 	 * Get data dinamis
 	 */
-	public function get_data_advance($id = '', $judul = '', $status = '', $order = '', $limit = '', $offset = '')
+	public function get_data_advance($id = '', $judul = '', $status = '', $user_id = '', $order = '', $limit = '', $offset = '')
 	{
 		$sql = $this->db;
 
@@ -32,6 +34,11 @@ class Info_model extends CI_Model
 		if($status != '')
 		{
 			$sql->where($this->status, $status);
+		}
+		
+		if($user_id != '')
+		{
+			$sql->where($this->user_id, $user_id);
 		}
 		
 		if($order != '')

@@ -51,8 +51,8 @@ class News extends CI_Controller
         $get_data = $this->news_model->get_data_advance('' , '', '', $user_id, $order)->result_array();
         
         // view
-        $data['listdata'] = $get_data;
         $data['user_id'] = $user_id;
+        $data['listdata'] = $get_data;
         $data['dir_upload'] = $this->dir_upload();
         $this->load->view('news/index', $data);
     }
@@ -92,13 +92,13 @@ class News extends CI_Controller
             'judul'     => $judul,
             'status'    => $status,
             'deskripsi' => $deskripsi,
-            'user_id'   => $this->session->userdata('user_id')
         ];
         
         // cek id jika id = new maka save,
         // jika bukan maka update
         if($id == 'new')
         {
+            $data_save['user_id'] = $this->session->userdata('user_id');
             $data_save['tgl_entri'] = date('Y-m-d H:i:s');
             
             // jika upload gambar

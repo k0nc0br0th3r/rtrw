@@ -226,7 +226,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo site_url('info') ?>" class="ajaxify nav-link">
+                        <a href="<?php echo site_url('info') ?>" class="ajaxify nav-link info-back">
                             <i class="icon-speech"></i>
                             <span class="title">Pengumuman</span>
                         </a>

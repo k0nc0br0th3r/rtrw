@@ -38,10 +38,20 @@ class Info extends CI_Controller
     public function index()
     {
         // get data
+        $user_id = $this->session->userdata('user_id');
         $order = 'tgl_entri DESC';
-        $get_data = $this->info_model->get_data_advance('' , '', '', $order)->result_array();
+        
+        // jika level 0 tampil semua 
+        // jika bukan tampil sesuai user yg login
+        if(get_user($user_id, 'level') == 0)
+        {
+            $user_id = '';
+        }
+        
+        $get_data = $this->info_model->get_data_advance('' , '', '', $user_id, $order)->result_array();
         
         // view
+        $data['user_id'] = $user_id;
         $data['listdata'] = $get_data;
         $data['dir_upload'] = $this->dir_upload();
         $this->load->view('info/index', $data);
@@ -58,7 +68,7 @@ class Info extends CI_Controller
         // view
         $data['id'] = $id;
         $data['rowdat'] = $get_data;
-        $this->load->view('news/edit', $data);
+        $this->load->view('info/edit', $data);
     }
     
     /**
@@ -82,13 +92,14 @@ class Info extends CI_Controller
             'judul'     => $judul,
             'status'    => $status,
             'deskripsi' => $deskripsi,
-            'user_id'   => $this->session->userdata('user_id')
+            'tipe'      => 0
         ];
         
         // cek id jika id = new maka save,
         // jika bukan maka update
         if($id == 'new')
         {
+            $data_save['user_id'] = $this->session->userdata('user_id');
             $data_save['tgl_entri'] = date('Y-m-d H:i:s');
             
             // jika upload gambar
@@ -156,14 +167,14 @@ class Info extends CI_Controller
         if($save)
         {
             $response = [
-                'message' => 'Berita berhasil disimpan',
+                'message' => 'Pengumuman berhasil disimpan',
                 'status'  => 'success'
             ];
         }
         else
         {
             $response = [
-                'message' => 'Berita gagal disimpan',
+                'message' => 'Pengumuman gagal disimpan',
                 'status'  => 'error'
             ];
         }
@@ -197,14 +208,14 @@ class Info extends CI_Controller
             }
             
             $response = [
-                'message' => 'Berita berhasil dihapus',
+                'message' => 'Pengumuman berhasil dihapus',
                 'status'  => 'success'
             ];
         }
         else
         {
             $response = [
-                'message' => 'Berita gagal dihapus',
+                'message' => 'Pengumuman gagal dihapus',
                 'status'  => 'error'
             ];
         }

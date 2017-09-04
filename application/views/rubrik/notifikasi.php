@@ -5,7 +5,7 @@
 <ul class="dropdown-menu">
     <li class="external">
         <h3>Rubrik yang belum dibalas</h3>
-        <a href="<?php echo site_url('page/rubrik') ?>">lihat</a>
+        <a class="ajaxify_mn" href="<?php echo site_url('page/rubrik') ?>">lihat</a>
     </li>
     <li>
         <ul class="dropdown-menu-list scroller list-rubrik" style="height: 250px; overflow: auto;" data-handle-color="#637283">
@@ -39,6 +39,13 @@
 </ul>
 <script type="text/javascript">
     $('.list-rubrik').on('click', '.list_ajaxify_mn', function(e) {
+        e.preventDefault();
+        App.scrollTop();
+        var url = $(this).attr("href");
+        Layout.loadAjaxContent(url, $(this));
+    });
+    
+    $('.ajaxify_mn').click(function(e) {
         e.preventDefault();
         App.scrollTop();
         var url = $(this).attr("href");

@@ -17,6 +17,7 @@ class Page extends CI_Controller {
 		// load model
 		$this->load->model('news_model');
 		$this->load->model('info_model');
+		$this->load->model('rubrik_model');
 	}
 
 	// BEGIN PAGE LOGIN
@@ -125,6 +126,71 @@ class Page extends CI_Controller {
 		} else {
 			redirect('welcome');
 		}
+	}
+	
+	/**
+	 * Frontend Rubrik Page
+	 *
+	 * @author Hikmahtiar <hikmahtiar.cool@gmail.com>
+	 * @return HTML
+	 */
+	public function rubrik_warga()
+	{	
+		$data['konten'] = 'frontend/rubrik/index';
+		$this->load->view('template', $data);
+		$this->load->view('footer/foot_beranda');
+	}
+	
+	/**
+	 * Frontend Rubrik Save
+	 *
+	 * @author Hikmahtiar <hikmahtiar.cool@gmail.com>
+	 */
+	public function rubrik_save()
+	{
+		// post & data
+		$name = $this->input->post('name');
+		$no_telp = $this->input->post('no_telp');
+		$pesan = $this->input->post('pesan');
+		$captcha = $this->input->post('captcha');
+		$session_captcha = $this->session->userdata('captcha');
+		
+		$data_save = [
+			'nama'      => $name,
+			'telp'      => $no_telp,
+			'komentar'  => $pesan,
+			'status'    => 0,
+			'reply'     => 0,
+			'tgl_kirim' => date('Y-m-d H:i:s'),
+		];
+		
+		// cek captcha terlebih dahulu
+		if($session_captcha == $captcha)
+		{
+			// save data
+			$save = $this->rubrik_model->save($data_save);
+			$response = [
+				'message' => 'Pesan Anda gagal dikirim',
+				'status'  => 'error'
+			];
+			
+			if($save)
+			{
+				$response = [
+					'message' => 'Pesan Anda berhasil dikirim',
+					'status'  => 'success'
+				];
+			}
+		}
+		else
+		{
+			$response = [
+				'message' => 'Kode Captcha masih salah, silahkan coba lagi',
+				'status'  => 'error'
+			];
+		}
+		
+		output_json($response);
 	}
 
 	/**

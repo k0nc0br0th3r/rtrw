@@ -1,6 +1,8 @@
 <?php
 /**
  * Berita model
+ *
+ * @author Hikmahtiar <hikmahtiar.cool@gmail.com>
  */
 class News_model extends CI_Model 
 {

@@ -33,6 +33,7 @@
         <link href="<?php echo base_url() ?>assets/layouts/layout4/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
+        <script src="<?php echo base_url() ?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
     <!-- END HEAD -->
 
     <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
@@ -120,6 +121,12 @@
                             ?>
                                 
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo site_url('page/rubrik_warga') ?>" class="nav-link">
+                                <i class="icon-users"></i>
+                                <span class="title">Rubrik Warga</span>
+                            </a>
                         </li>
                         <li class="heading">
                             <h3 class="uppercase">Informasi Desa</h3>

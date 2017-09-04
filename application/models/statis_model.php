@@ -1,6 +1,8 @@
 <?php
 /**
- * Berita model
+ * Statis model
+ *
+ * @author Hikmahtiar <hikmahtiar.cool@gmail.com>
  */
 class Statis_model extends CI_Model 
 {

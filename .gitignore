@@ -16,3 +16,6 @@ application/logs/*
 
 /uploads/statis/*
 !uploads/statis/.gitkeep
+
+/uploads/captcha/*
+!uploads/captcha/.gitkeep

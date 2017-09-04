@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "jquery-form": "^4.2.2",
-    "notify": "https://github.com/egig/notify.git"
+    "notify": "https://github.com/egig/notify.git",
+    "ckeditor": "^4.7.2"
   }
 }

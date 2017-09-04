@@ -1,19 +1,47 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
-
-	function __construct()
+/**
+ * Welcome Controller
+ * 
+ * @author Hikmahtiar <hikmahtiar.cool@gmail.com>
+ * @author Imam Teguh
+ */
+class Welcome extends CI_Controller 
+{
+	/**
+	 * Contructor Codeigniter
+	 */
+	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('supermodel');
 		if($this->session->userdata('user_id')!='') {
 			redirect('dashboard');
 		}
+		
+		// load model
+		$this->load->model('supermodel');
+		$this->load->model('info_model');
+        $this->load->model('news_model');
 	}
 
-	function index()
+	/**
+	 * Index Page
+	 * 
+	 * @return HTML
+	 */
+	public function index()
 	{
-		$data['konten'] = "public/beranda";
+		// data
+		$order = 'tgl_entri DESC';
+		$get_data_news = $this->news_model->get_data_advance('', '', 1, '', $order, 2, 0)->result(); 
+		$get_data_info = $this->info_model->get_data_advance('', '', 1, '', $order, 6, 0)->result(); 
+		
+		
+		// view
+		$data['konten'] = "frontend/beranda";
+		$data['data_news'] = $get_data_news;
+		$data['data_info'] = $get_data_info;
+		
 		$this->load->view('template', $data);
 		$this->load->view('footer/foot_beranda');
 	}

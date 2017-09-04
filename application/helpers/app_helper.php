@@ -372,5 +372,22 @@ function upload_file($path=null, $name=null, $rename=null, $allowed_types = '')
 	
 	return false;
  }
+ 
+ /**
+  * Menampilkan Config COdeigniter
+  */
+ function show_config($key = '')
+ {
+     $ci =& get_instance();
+ 
+     $config = $ci->config->config;
+ 
+     if(array_key_exists($key, $config))
+     {
+         return $config[$key];
+     }
+ 
+     return '-';
+ }
 
 ?>

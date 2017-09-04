@@ -28,7 +28,7 @@
                 
 
                     <div class="col-md-6">
-                        <div class="blog-post-lg bordered blog-container" style="border: 1px solid #AAA;">
+                        <div class="blog-post-lg bordered blog-container" style="border: 1px solid #DDD;">
                             <div class="blog-img-thumb" style="max-height: 250px;">
                                 <a href="<?php echo site_url('page/news/'.$row_data->berita_id); ?>">
                                     <!-- cek gambar -->
@@ -46,7 +46,7 @@
                                     </a>
                                 </h2>
                                 <p class="blog-post-desc"> 
-                                    <?php echo $row_data->deskripsi; ?> 
+                                    <?php echo substr($row_data->deskripsi, 0, 150); ?> 
                                 </p>
                                 <div class="blog-post-foot">
                                     <div class="blog-post-meta">

@@ -87,7 +87,7 @@
                         <?php
                         if($this->session->userdata('level')==0):
                         ?>
-                        <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_rubrik_bar">
+                        <!-- <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_rubrik_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-social-dropbox"></i>
                                 <span class="badge badge-danger"> 0 </span>
@@ -95,7 +95,7 @@
                             <ul class="dropdown-menu">
                                 <li class="external">
                                     <h3>Rubrik yang belum dibalas</h3>
-                                    <a href="<?php echo site_url('page/rubrik') ?>">lihat</a>
+                                    <a href="<?php // echo site_url('page/rubrik') ?>">lihat</a>
                                 </li>
                                 <li>
                                     <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
@@ -110,24 +110,24 @@
                                     </ul>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                         <?php 
                         endif; 
                         ?>
                         <!-- END NOTIFICATION DROPDOWN -->
-                        <li class="separator hide"> </li>
+                        <!-- <li class="separator hide"> </li> -->
                         <!-- BEGIN INBOX DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_gagasan_bar">
+                        <!-- <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_gagasan_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <i class="icon-bulb"></i>
+                                <i class="icon-bulb"></i> -->
                                 <!-- notif -->
-                                <span class="badge badge-danger">0</span>
+                                <!-- <span class="badge badge-danger">0</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="external">
                                     <h3>Pesan yang belum dibaca</h3>
-                                    <a href="<?php echo site_url('page/gagasan') ?>">lihat</a>
+                                    <a href="<?php // echo site_url('page/gagasan') ?>">lihat</a>
                                 </li>
                                 <li>
                                     <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
@@ -142,9 +142,9 @@
                                     </ul>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                         <!-- END INBOX DROPDOWN -->
-                        <li class="separator hide"> </li>
+                        <!-- <li class="separator hide"> </li> -->
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user dropdown-dark">
@@ -194,7 +194,7 @@
                 <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                    <li class="nav-item start ">
+                    <li class="nav-item start active">
                         <a href="<?php echo site_url('dashboard/content') ?>" class="ajaxify nav-link">
                             <i class="icon-home"></i>
                             <span class="title">Beranda</span>
@@ -303,26 +303,6 @@
         </div>
     </div>
     <!-- END FOOTER -->
-
-    <div class="modal fade" id="idle-timeout-dialog" data-backdrop="static">
-        <div class="modal-dialog modal-small">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Session kamu akan habis.</h4>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        <i class="fa fa-warning font-red"></i> Kamu akan keluar dari sistem
-                        <span id="idle-timeout-counter"></span> detik.</p>
-                    <p> Do you want to continue your session? </p>
-                </div>
-                <div class="modal-footer">
-                    <button id="idle-timeout-dialog-logout" type="button" class="btn dark btn-outline sbold uppercase">No, Logout</button>
-                    <button id="idle-timeout-dialog-keepalive" type="button" class="btn green btn-outline sbold uppercase" data-dismiss="modal">Yes, Keep Working</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!--[if lt IE 9]>
     <script src="<?php echo base_url() ?>assets/global/plugins/respond.min.js"></script>

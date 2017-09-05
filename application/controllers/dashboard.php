@@ -12,12 +12,14 @@ class Dashboard extends CI_Controller {
 
 	function index()
 	{
-		$this->load->model('m_timeline');
+		$user_id = $this->session->userdata('user_id');
+		$this->load->model(array('m_timeline','supermodel'));
 		$konten = "page/timeline";
 		if($this->session->userdata('level')==0) {
 			$konten = "page/dashboard";
 		}
 		$data['timeline'] = $this->m_timeline->getData(null, 'tgl_entri', 'desc');
+		$data['lastpengumuman'] = $this->supermodel->getData('pengumuman', array('user_id <>'=>$user_id), '', 6, 0);
 		$data['konten'] = $konten;
 		$this->load->view('admin', $data);
 	}

@@ -90,35 +90,35 @@ var CustomAdmin = function () {
 
     }
 
-    var dropNotifGagasan = function (link) {
-        var list = $('#header_gagasan_bar');
-        var h = $(location).attr('host');
-        var refresh_gagasan = setInterval(function () {
-            $.ajax({
-                url : link + "gagasan/list_notif",
-                type : "POST",
-                data : "read=0",
-                success : function(data) {
-                    list.html(data);
-                }
-            });
-        }, 10000);
-    }
+    // var dropNotifGagasan = function (link) {
+    //     var list = $('#header_gagasan_bar');
+    //     var h = $(location).attr('host');
+    //     var refresh_gagasan = setInterval(function () {
+    //         $.ajax({
+    //             url : link + "gagasan/list_notif",
+    //             type : "POST",
+    //             data : "read=0",
+    //             success : function(data) {
+    //                 list.html(data);
+    //             }
+    //         });
+    //     }, 10000);
+    // }
 
-    var dropNotifRubrik = function (link) {
-        var list = $('#header_rubrik_bar');
-        var h = $(location).attr('host');
-        var refresh_rubrik = setInterval(function () {
-            $.ajax({
-                url : link + "rubrik/list_notif",
-                type : "POST",
-                data : "reply=0",
-                success : function(data) {
-                    list.html(data);
-                }
-            });
-        }, 10000);
-    }
+    // var dropNotifRubrik = function (link) {
+    //     var list = $('#header_rubrik_bar');
+    //     var h = $(location).attr('host');
+    //     var refresh_rubrik = setInterval(function () {
+    //         $.ajax({
+    //             url : link + "rubrik/list_notif",
+    //             type : "POST",
+    //             data : "reply=0",
+    //             success : function(data) {
+    //                 list.html(data);
+    //             }
+    //         });
+    //     }, 10000);
+    // }
 
     var MnAjaxContent = function () {
         // handle ajax link within main content
@@ -165,8 +165,8 @@ var CustomAdmin = function () {
             // initTable2();   
             MnAjaxContent();
             // handleFormSend();
-            dropNotifGagasan(link);   
-            dropNotifRubrik(link);
+            // dropNotifGagasan(link);   
+            // dropNotifRubrik(link);
             // outsess(link);
         }
     };

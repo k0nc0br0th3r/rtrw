@@ -38,7 +38,7 @@
                             <tr class="odd gradeX">
                                 <td> <?php echo $no ?> </td>
                                 <td> <?php echo $rows['judul'] ?> </td>
-                                <!-- <td> <?php echo $tp[$rows['tipe']] ?> </td> -->
+                                <!-- <td> <?php // echo $tp[$rows['tipe']] ?> </td> -->
                                 <td> 
                                     <span class="label label-sm label-<?php echo ($rows['status']==0 ? "success" : "danger" ); ?>"> 
                                     <?php echo $st[$rows['status']] ?> 
@@ -50,7 +50,7 @@
                                         <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
                                             <i class="fa fa-angle-down"></i>
                                         </button>
-                                        <ul class="dropdown-menu" role="menu">
+                                        <ul class="dropdown-menu pull-right" role="menu">
                                             <li>
                                                 <a href="<?php echo site_url('posting/index/edit/'.$this->uri->segment(4).'/'.$rows['berita_id']) ?>" class="ajaxify">
                                                     <i class="icon-note"></i> Edit Berita </a>

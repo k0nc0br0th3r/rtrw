@@ -19,6 +19,7 @@ class Action extends CI_Controller {
 			$lg = $this->supermodel->getData('user',array('username'=>$u,'password'=>$p));
 			if($lg->num_rows()==1) {
 				$row = $lg->row_array();
+				$row['logtime'] = date("d-m-Y H:i:s");
 				$this->session->set_userdata($row);
 				redirect('dashboard');
 			} else {

@@ -46,7 +46,7 @@
                                         <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
                                             <i class="fa fa-angle-down"></i>
                                         </button>
-                                        <ul class="dropdown-menu" role="menu">
+                                        <ul class="dropdown-menu pull-right" role="menu">
                                             <li>
                                                 <a href="<?php echo site_url('member/edit/'.$rows['user_id']) ?>" class="ajaxify">
                                                     <i class="icon-note"></i> Edit Acount </a>

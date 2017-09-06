@@ -279,6 +279,24 @@ function get_status($id = '')
 }
 
 /**
+ * Status
+ */
+function get_status_pelayanan($id = '')
+{
+	$data = [
+		0 => 'Belum Diproses',
+		1 => 'Sedang Diproses',
+		2 => 'Selesai'
+	];
+	
+	if($id != '')
+	{
+		return $data[$id];
+	}
+	return $data;
+}
+
+/**
  * Check array key exist
  */
 function check_array_exists($array, $key)
@@ -388,6 +406,14 @@ function upload_file($path=null, $name=null, $rename=null, $allowed_types = '')
      }
  
      return '-';
+ }
+ 
+ /**
+  * Time now
+  */
+ function time_now()
+ {
+	 return strtotime(date('Y-m-d H:i:s'));
  }
 
 ?>

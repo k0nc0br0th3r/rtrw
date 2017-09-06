@@ -26,10 +26,12 @@ class Dashboard extends CI_Controller {
 
 	function content()
 	{
+		$user_id = $this->session->userdata('user_id');
 		$konten = "page/timeline";
 		if($this->session->userdata('level')==0) {
 			$konten = "page/dashboard";
 		}
+		$data['lastpengumuman'] = $this->supermodel->getData('pengumuman', array('user_id <>'=>$user_id), '', 6, 0);
 		$data['timeline'] = $this->m_timeline->getData(null, 'tgl_entri', 'desc');
 		$this->load->view($konten, $data);
 	}
@@ -77,7 +79,7 @@ class Dashboard extends CI_Controller {
 	public function count_rubrik()
 	{
 		$response = array();
-		$data = $this->supermodel->getData('rubrik', array('tgl_kirim', date('Y-m-d')));
+		$data = $this->supermodel->getData('rubrik', array('tgl_kirim'=> date('Y-m-d')));
 		if ($data) {
 			$response['count'] = $data->num_rows();
 		}

@@ -44,6 +44,7 @@
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="favicon.ico" />
     
+    <script src="<?php echo base_url() ?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         window.APP = {
             siteUrl :"<?php echo site_url(); ?>",
@@ -200,6 +201,12 @@
                             <span class="title">Beranda</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?php echo site_url('pelayanan') ?>" class="ajaxify nav-link">
+                            <i class="icon-speech"></i>
+                            <span class="title">Pelayanan</span>
+                        </a>
+                    </li>
                     <?php
                     if($this->session->userdata('level')==0):
                     ?>
@@ -209,6 +216,7 @@
                             <span class="title">Rubrik warga</span>
                         </a>
                     </li>
+                    
                     <li class="heading">
                         <h3 class="uppercase">Edit Konten</h3>
                     </li>
@@ -310,7 +318,6 @@
     <script src="<?php echo base_url() ?>assets/global/plugins/ie8.fix.min.js"></script> 
     <![endif]-->
     <!-- BEGIN CORE PLUGINS -->
-    <script src="<?php echo base_url() ?>assets/global/plugins/jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url() ?>assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url() ?>assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url() ?>assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
@@ -346,7 +353,7 @@
         jQuery(document).ready(function() {    
            CustomAdmin.init("<?php echo base_url() ?>"); 
         });
-
+        
         var elRubrik = '.nav-rubrik';
         var elIde = '.nav-ide';
         var UrlRubrik = window.APP.siteUrl + 'dashboard/notif_rubrik';

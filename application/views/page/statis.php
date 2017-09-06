@@ -10,7 +10,7 @@
                         <span class="caption-subject font-red sbold uppercase">Form edit konten</span>
                     </div>
                     <div class="actions">
-                        <a class="btn green-haze btn-outline btn-circle btn-sm ajaxify" href="<?php echo site_url('action/hapus_statis/'.$rowdat->statis_id) ?>"> 
+                        <a class="btn green-haze btn-outline btn-circle btn-sm" href="<?php echo site_url('action/hapus_statis/'.$rowdat->statis_id) ?>"> 
                         <i class="fa fa-times"></i> Hapus Halaman </a>
                     </div>
                 </div>

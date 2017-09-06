@@ -204,7 +204,7 @@
                     if($this->session->userdata('level')==0):
                     ?>
                     <li class="nav-item">
-                        <a href="<?php echo site_url('page/rubrik') ?>" class="ajaxify nav-link">
+                        <a href="<?php echo site_url('page/rubrik') ?>" class="ajaxify nav-link nav-rubrik">
                             <i class="icon-social-dropbox"></i>
                             <span class="title">Rubrik warga</span>
                         </a>
@@ -232,7 +232,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo site_url('page/gagasan/') ?>" class="ajaxify nav-link">
+                        <a href="<?php echo site_url('page/gagasan/') ?>" class="ajaxify nav-link nav-ide">
                             <i class="icon-bulb"></i>
                             <span class="title">Gagasan / Ide</span>
                         </a>
@@ -341,10 +341,20 @@
     <!-- END THEME GLOBAL SCRIPTS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="<?php echo base_url() ?>assets/pages/scripts/custom-admin.js" type="text/javascript"></script>
+    <script src="<?php echo base_url() ?>assets/apps/scripts/admin/admin.js" type="text/javascript"></script>
     <script type="text/javascript">
         jQuery(document).ready(function() {    
            CustomAdmin.init("<?php echo base_url() ?>"); 
         });
+
+        var elRubrik = '.nav-rubrik';
+        var elIde = '.nav-ide';
+        var UrlRubrik = window.APP.siteUrl + 'dashboard/notif_rubrik';
+        var UrlIde = window.APP.siteUrl + 'dashboard/notif_ide';
+        window.ADMIN.handleNotif(UrlRubrik, elRubrik);
+        window.ADMIN.handleNotif(UrlIde, elIde);
+        window.ADMIN.handleClickNotif(elRubrik);
+        window.ADMIN.handleClickNotif(elIde);
     </script>
     <!-- END PAGE LEVEL SCRIPTS -->
     <!-- BEGIN THEME LAYOUT SCRIPTS -->

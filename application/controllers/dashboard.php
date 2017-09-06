@@ -5,6 +5,7 @@ class Dashboard extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model(array('m_timeline','supermodel'));
 		if($this->session->userdata('user_id')=="") {
 			redirect('welcome');
 		}
@@ -13,7 +14,6 @@ class Dashboard extends CI_Controller {
 	function index()
 	{
 		$user_id = $this->session->userdata('user_id');
-		$this->load->model(array('m_timeline','supermodel'));
 		$konten = "page/timeline";
 		if($this->session->userdata('level')==0) {
 			$konten = "page/dashboard";
@@ -26,7 +26,6 @@ class Dashboard extends CI_Controller {
 
 	function content()
 	{
-		$this->load->model('m_timeline');
 		$konten = "page/timeline";
 		if($this->session->userdata('level')==0) {
 			$konten = "page/dashboard";
@@ -37,8 +36,6 @@ class Dashboard extends CI_Controller {
 
 	function send_timeline()
 	{
-		$this->load->model('supermodel');
-
 		$in['pesan'] = trim(mysql_real_escape_string($this->input->post('pesan')));
 		$in['tgl_entri'] = date("Y-m-d H:i:s");
 		$in['user_id'] = $this->session->userdata('user_id');
@@ -50,16 +47,41 @@ class Dashboard extends CI_Controller {
 
 	function del_timeline($id)
 	{
-		$this->load->model('supermodel');
+		
 		if(isset($id)) {
 			$this->supermodel->deleteData('timeline', 'timeline_id', $id);
 		}
 		redirect('dashboard');
 	}
 
-	function offsess()
+	public function notif_rubrik()
 	{
-		echo "OK";
+		$response = array();
+		$data = $this->supermodel->getData('rubrik', array('reply'=>0));
+		if ($data) {
+			$response['count'] = $data->num_rows();
+		}
+		output_json($response);
+	}
+
+	public function notif_ide()
+	{
+		$response = array();
+		$data = $this->supermodel->getData('gagasan', array('reply'=>0));
+		if ($data) {
+			$response['count'] = $data->num_rows();
+		}
+		output_json($response);
+	}
+
+	public function count_rubrik()
+	{
+		$response = array();
+		$data = $this->supermodel->getData('rubrik', array('tgl_kirim', date('Y-m-d')));
+		if ($data) {
+			$response['count'] = $data->num_rows();
+		}
+		output_json($response);
 	}
 }
 

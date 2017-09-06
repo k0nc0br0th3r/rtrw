@@ -3,41 +3,6 @@ Custom module for you to write your own javascript functions
 **/
 var CustomAdmin = function () {
 
-    var outsess = function (link) {
-        var $countdown;
-        var h = $(location).attr('host');
-        $('body').append('');
-                
-        // start the idle timer plugin
-        $.idleTimeout('#idle-timeout-dialog', '.modal-content button:last', {
-            idleAfter: 60, // 5 seconds
-            timeout: 10000, //10 seconds to timeout
-            pollingInterval: 10, // 5 seconds
-            keepAliveURL: link + 'dashboard/offsess',
-            serverResponseEquals: 'OK',
-            onTimeout: function(){
-                window.location = link + 'action/logout';
-            },
-            onIdle: function(){
-                // window.location = 'http://' + h + '/ci_rtrw/welcome';
-                $('#idle-timeout-dialog').modal('show');
-                $countdown = $('#idle-timeout-counter');
-
-                $('#idle-timeout-dialog-keepalive').on('click', function () { 
-                    $('#idle-timeout-dialog').modal('hide');
-                });
-
-                $('#idle-timeout-dialog-logout').on('click', function () { 
-                    $('#idle-timeout-dialog').modal('hide');
-                    $.idleTimeout.options.onTimeout.call(this);
-                });
-            },
-            onCountdown: function(counter){
-                $countdown.html(counter); // update the counter
-            }
-        });
-    }
-
     var initTable2 = function () {
 
         var table = $('#sample_2');
@@ -125,9 +90,7 @@ var CustomAdmin = function () {
         $('.ajaxify_mn').on('click', function(e) {
             e.preventDefault();
             App.scrollTop();
-
             var url = $(this).attr("href");
-
             Layout.loadAjaxContent(url);
         });
     }
@@ -167,7 +130,6 @@ var CustomAdmin = function () {
             // handleFormSend();
             // dropNotifGagasan(link);   
             // dropNotifRubrik(link);
-            // outsess(link);
         }
     };
 

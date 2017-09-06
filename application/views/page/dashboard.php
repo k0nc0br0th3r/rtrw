@@ -82,8 +82,8 @@
             <div class="dashboard-stat2 bordered">
                 <div class="display">
                     <div class="number">
-                        <h3 class="font-purple-soft">
-                            <span data-counter="counterup" data-value="276">0</span>
+                        <h3 class="font-purple-soft count-rubrik">
+                            <!-- <span data-counter="counterup" data-value="276">0</span> -->
                         </h3>
                         <small>RUBRIK WARGA</small>
                     </div>
@@ -206,9 +206,10 @@
         </div>
     </div>
 
+<script src="<?php echo base_url() ?>assets/apps/scripts/admin/dashboard.js" type="text/javascript"></script>
 <script type="text/javascript">
-    $("[data-counter='counterup']").counterUp({
-        delay: 10,
-        time: 1000
-    });
+    var elBoxRubrik = '.count-rubrik';
+    var UrlCountRubrik = window.APP.siteUrl + 'dashboard/count_rubrik';
+    window.DASHBOARD.handleCount(UrlCountRubrik, elBoxRubrik);
+    window.DASHBOARD.handleCounterUp;
 </script>

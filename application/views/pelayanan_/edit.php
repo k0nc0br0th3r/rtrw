@@ -1,3 +1,15 @@
+<?php
+// cek jika level admindesa 
+// maka ada beberapa input yg readonly / disable
+$readonly = '';
+$disable = '';
+if($this->session->userdata('level') == '0')
+{
+    $readonly = 'readonly="readonly"';
+    $disable = 'disabled="disabled"';
+}
+?>
+
 <!-- BEGIN CONTENT HEADER -->
 <div class="row">
     <div class="col-md-12">
@@ -18,7 +30,7 @@
                 <!-- BEGIN FORM-->
                 <form id="form" method="post" action="<?php echo site_url('pelayanan/save'); ?>" class="form-horizontal form-bordered pelayanan-form" enctype="multipart/form-data">
                     
-                    <input name="id" type="hidden" value="<?php echo $id; ?>" />
+                    <input class="pelayanan-id" name="id" type="hidden" value="<?php echo $id; ?>" />
                     
                     <div class="form-body">
                         
@@ -32,25 +44,27 @@
                                         <label class="control-label">Jenis Pelayanan
                                             <span class="required">*</span>
                                         </label>
-                                        <select class="form-control pelayanan-jenis" required="required">
+                                        <select class="form-control pelayanan-jenis" required="required" <?php echo $disable; ?>>
                                             <option value="">
                                                 - Pilih -
                                             </option>
                                             <?php if($data_jenis): ?>
                                                 <?php foreach($data_jenis  as $jenis): ?>
-                                                    <option value="<?php echo $jenis->jenis_pelayanan_id; ?>">
+                                                    <option value="<?php echo $jenis->jenis_pelayanan_id; ?>" <?php echo (check_array_exists($rowdat, 'parent_pelayanan') == $jenis->jenis_pelayanan_id) ? 'selected="selected"' : ''; ?>>
                                                         <?php echo $jenis->nama_pelayanan; ?>
                                                     </option>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
                                         </select>
                                     </div>
+
+                                    <input id="pelayanan-jenis-hide" name="jenis_pelayanan_hide" type="hidden" value="<?php echo check_array_exists($rowdat, 'jenis_pelayanan_id'); ?>">
                                     
                                     <div class="form-group form-md-line-input">
                                         <label class="control-label">Nama Pelayanan
                                             <span class="required">*</span>
                                         </label>
-                                        <select class="form-control pelayanan-name"  name="jenis_pelayanan" required="required">
+                                        <select class="form-control pelayanan-name"  name="jenis_pelayanan" required="required" <?php echo $disable; ?>>
                                             <option value="">
                                                 - Pilih -
                                             </option>
@@ -62,28 +76,28 @@
                                         <label class="control-label">NIK
                                             <span class="required">*</span>
                                         </label>
-                                        <input type="text" class="form-control form-control-focus" id="nik" placeholder="" name="nik" value="<?php echo check_array_exists($rowdat, 'judul')?>" required="required">
+                                        <input type="text" class="form-control form-control-focus" id="nik" placeholder="" name="nik" value="<?php echo check_array_exists($rowdat, 'nik')?>" required="required" <?php echo $readonly; ?>>
                                     </div>
                                     
                                     <div class="form-group form-md-line-input">
                                         <label class="control-label"> Nama
                                             <span class="required">*</span>
                                         </label>
-                                        <input type="text" class="form-control form-control-focus" placeholder="" name="nama" value="<?php echo check_array_exists($rowdat, 'judul')?>" required="required">
+                                        <input type="text" class="form-control form-control-focus" placeholder="" name="nama" value="<?php echo check_array_exists($rowdat, 'nama')?>" required="required" <?php echo $readonly; ?>>
                                     </div>
                                     
                                     <div class="form-group form-md-line-input">
                                         <label class="control-label">Keperluan
                                             <span class="required">*</span>
                                         </label>
-                                        <input type="text" class="form-control form-control-focus" name="keperluan" value="<?php echo check_array_exists($rowdat, 'judul')?>" required="required">
+                                        <input type="text" class="form-control form-control-focus" name="keperluan" value="<?php echo check_array_exists($rowdat, 'keperluan')?>" required="required" <?php echo $readonly; ?>>
                                     </div>
                                     
                                     <div class="form-group form-md-line-input">
                                         <label class="control-label">No. Telp
                                             <span class="required">*</span>
                                         </label>
-                                        <input type="text" class="form-control form-control-focus" name="no_telp" placeholder="08xxxxxxxx" value="<?php echo check_array_exists($rowdat, 'judul')?>" required="required">
+                                        <input type="text" class="form-control form-control-focus" name="no_telp" placeholder="08xxxxxxxx" value="<?php echo check_array_exists($rowdat, 'no_telp')?>" required="required" <?php echo $readonly; ?>>
                                     </div>
                                 </div>
                                 
@@ -107,14 +121,14 @@
                                         }
                                         ?>
                                         
-                                        <input type="text" class="form-control form-control-focus" id="rw" name="rw" value="<?php echo $no_rw; ?>" required="required">
+                                        <input type="text" class="form-control form-control-focus" id="rw" name="rw" value="<?php echo $no_rw; ?>" required="required" <?php echo $readonly; ?>>
                                     </div>
                                     
                                     <div class="form-group form-md-line-input">
                                         <label class="control-label">RT
                                             <span class="required">*</span>
                                         </label>
-                                        <input type="text" class="form-control form-control-focus" id="rt" name="rt" value="<?php echo check_array_exists($rowdat, 'judul')?>" required="required">
+                                        <input type="text" class="form-control form-control-focus" id="rt" name="rt" value="<?php echo check_array_exists($rowdat, 'rt')?>" required="required" <?php echo $readonly; ?>>
                                     </div>
                                     
                                     <div class="form-group form-md-line-input">
@@ -126,26 +140,30 @@
                                         <label class="control-label">Alamat
                                             <span class="required">*</span>
                                         </label>
-                                        <textarea class="form-control" rows="6" name="alamat" required="required"></textarea>
+                                        <textarea class="form-control" rows="6" name="alamat" required="required" <?php echo $readonly; ?>><?php echo check_array_exists($rowdat, 'alamat'); ?></textarea>
                                     </div>
                                     
+                                    <?php if($this->session->userdata('level') == '0') :?>
                                     <div class="form-group form-md-line-input">
                                         <label class="control-label">Status Pelayanan
                                             <span class="required">*</span>
                                         </label>
-                                        <select class="form-control" required="required">
+                                        <select class="form-control" name="status" required="required">
                                             <option value="">
                                                 - Pilih -
                                             </option>
                                             <?php if(get_status_pelayanan()): ?>
                                                 <?php foreach(get_status_pelayanan()  as $key => $val): ?>
-                                                    <option value="<?php echo $key; ?>">
+                                                    <option value="<?php echo $key; ?>" <?php echo (check_array_exists($rowdat, 'status') == $key) ? 'selected="selected"' : ''; ?>>
                                                         <?php echo $val; ?>
                                                     </option>
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
                                         </select>
                                     </div>
+
+
+                                    <?php endif; ?>
                                     
                                 </div>
                                 

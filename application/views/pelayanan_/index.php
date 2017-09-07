@@ -17,10 +17,10 @@
                 <?php endif ?>
             </div>
             <div class="portlet-body">
-                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="news-table">
+                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="pelayanan-table">
                     <thead>
                         <tr>
-                            <th> NO. </th>
+                            <th > NO. </th>
                             <?php if($this->session->userdata('level') == 0 ): ?>
                                 <th> RW </th>
                             <?php endif ?>
@@ -29,14 +29,40 @@
                             <th> Nama Lengkap </th>
                             <th> Keperluan </th>
                             <th> No. Telpon </th>
-                            <th> Jenis Layanan </th>
                             <th> Nama Layanan </th>
                             <th> Status </th>
                             <th> Tools </th>
                         </tr>
                     </thead>
                     <tbody>
-                    
+                        <?php $no=1; if($get_data) : ?>
+                            <?php foreach($get_data as $row): ?>
+                                <tr class="odd gradeX">
+                                    <td align="right" style="width: 15px;"><?php echo $no;?></td>
+                                    <?php if($this->session->userdata('level') == 0 ): ?>
+                                        <td><?php echo $row->rw;?></td>
+                                    <?php endif ?>
+                                    <td><?php echo $row->rt;?></td>
+                                    <td><?php echo $row->nik;?></td>
+                                    <td><?php echo $row->nama;?></td>
+                                    <td><?php echo $row->keperluan;?></td>
+                                    <td><?php echo $row->no_telp;?></td>
+                                    <td><?php echo $row->nama_pelayanan;?></td>
+                                    <td style="font-size: 11px;"><?php echo get_status_pelayanan($row->status) ;?></td>
+                                    <td>
+                                        <a class="ajaxify btn btn-warning btn-sm" href="<?php echo site_url('pelayanan/edit/'.$row->pelayanan_id); ?>" title="Edit Data">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <?php if($this->session->userdata('level') > 0 ): ?>
+                                            <a class="btn btn-danger btn-sm pelayanan-delete" title="Hapus Data" data-id="<?php echo $row->pelayanan_id; ?>">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                        <?php endif ?>
+                                    </td>
+                                </tr>
+                            <?php $no++; endforeach; ?>
+                        <?php endif; ?>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -45,8 +71,8 @@
 </div>
 
 <!-- END CONTENT HEADER -->
-<!-- <script src="<?php echo base_url('assets/apps/scripts/admin/news.js') ?>" type="text/javascript"></script> -->
+<script src="<?php echo base_url('assets/apps/scripts/admin/pelayanan.js?'.time_now()) ?>" type="text/javascript"></script>
 <script type="text/javascript">
-    // window.NEWS.handleDelete();
-    // $("#news-table").dataTable({"bStateSave": true});
+    window.PELAYANAN.handleDelete();
+    $("#pelayanan-table").dataTable({"bStateSave": true});
 </script>

@@ -6,8 +6,10 @@ window.PELAYANAN = (function($) {
         elBack : '.pelayanan-back',
         elDelete : '.pelayanan-delete',
         
-        elJenisPelayanan : '.pelayanan-jenis',
+        elPelayananId : '.pelayanan-id',
         elNamaPelayanan : '.pelayanan-name',
+        elJenisPelayanan : '.pelayanan-jenis',
+        elJenisPelayananHide : '#pelayanan-jenis-hide',
         urlGetNamaPelayanan : window.APP.siteUrl + 'pelayanan/get_data_name',
         
         // handle penyimpanan data
@@ -50,7 +52,7 @@ window.PELAYANAN = (function($) {
                     // redirect to list berita jika success
                     if(response.status == 'success') {    
                         setTimeout(function() {
-                            // $(parentThis.elBack).click();
+                            $(parentThis.elBack).click();
                         }, 1000);
                     }
                 }
@@ -64,7 +66,7 @@ window.PELAYANAN = (function($) {
             $(parentThis.elDelete).click(function() {
                 if(confirm('Apakah anda akan menghapus ini ?')) {
                     $.ajax({
-                        url : window.APP.siteUrl + 'news/delete',
+                        url : window.APP.siteUrl + 'pelayanan/delete',
                         type : 'post',
                         dataType : 'json',
                         data : {
@@ -89,28 +91,50 @@ window.PELAYANAN = (function($) {
         // get data nama pelayanan ketika memilih jenis
         handleNamaPelayanan : function() {
             var parentThis = this;
+
+            // jika id != new
+            // maka menjalankan get nama pelayanan
+
+            var pelayananId = $(parentThis.elPelayananId).val();
+            if(pelayananId != 'new') {
+                getNamaPelayanan();
+            }
             
             $(parentThis.elJenisPelayanan).change(function() {
+                getNamaPelayanan();
+            });
+
+            function getNamaPelayanan() {
                 $.ajax({
                     url : parentThis.urlGetNamaPelayanan,
                     type : 'post',
                     dataType : 'json',
                     data : {
-                        id : $(this).val()
+                        id : $(parentThis.elJenisPelayanan).val()
                     },
                     success : function(response) {
                         
                         var html = '';
+                        var selected = '';
                         for(var row in response) {
-                            html += '<option value="'+response[row]['jenis_pelayanan_id']+'">'+response[row]['nama_pelayanan']+'</option>';
+
+                            // jika sama dengan nama jenis pelayanan hide
+                            // maka selected
+                            if(response[row]['jenis_pelayanan_id'] == $(parentThis.elJenisPelayananHide).val()) {
+                                selected = 'selected="selected"';
+                            } else {
+                                selected = '';
+                            }
+
+                            html += '<option value="'+response[row]['jenis_pelayanan_id']+'" '+selected+'>'+response[row]['nama_pelayanan']+'</option>';
                         }
                         
                         $(parentThis.elNamaPelayanan).html(html);
                         
                         $(parentThis.elForm).valid();
                     }
-                })
-            });
+                });
+            }
         }
     }
 })(jQuery);

@@ -202,7 +202,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo site_url('pelayanan') ?>" class="ajaxify nav-link">
+                        <a href="<?php echo site_url('pelayanan') ?>" class="ajaxify nav-link pelayanan-back">
                             <i class="icon-speech"></i>
                             <span class="title">Pelayanan</span>
                         </a>

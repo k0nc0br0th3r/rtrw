@@ -28,11 +28,11 @@ class Pelayanan extends CI_Controller
     public function index()
     {
         // data 
-        $get_data = $this->
+        $get_data = $this->pelayanan_model->get_data_advance()->result();
         
         // view
         $data['get_data'] = $get_data;
-        $this->load->view('pelayanan/index', $data);
+        $this->load->view('pelayanan_/index', $data);
     }
     
     /**
@@ -41,16 +41,15 @@ class Pelayanan extends CI_Controller
     public function edit($id = '')
     {
         // get data
-        // $get_data = $this->news_model->get_data_advance($id)->row_array();
         $data_jenis = $this->pelayanan_model->get_jenis_advance('', '', '0')->result();
+        $get_data = $this->pelayanan_model->get_data_advance($id)->row_array();
         
-        $get_data = [];
         // view
         $data['id'] = $id;
         $data['rowdat'] = $get_data;
         $data['data_jenis'] = $data_jenis;
         
-        $this->load->view('pelayanan/edit', $data);
+        $this->load->view('pelayanan_/edit', $data);
     }
     
     /**
@@ -85,8 +84,10 @@ class Pelayanan extends CI_Controller
      */
     public function save()
     {
+        $level = $this->session->userdata('level');
         $id = $this->input->post('id');
         $jenis_pelayanan = $this->input->post('jenis_pelayanan');
+        $jenis_pelayanan_hide = $this->input->post('jenis_pelayanan_hide');
         $nik = $this->input->post('nik');
         $nama = $this->input->post('nama');
         $keperluan = $this->input->post('keperluan');
@@ -96,12 +97,22 @@ class Pelayanan extends CI_Controller
         $berkas = $this->input->post('berkas');
         $alamat = $this->input->post('alamat');
         $status = $this->input->post('status');
+
+        $pelayanan = $jenis_pelayanan;
+
+        // jika level admindes
+        // maka update menggunakan jenis pelayanan id hide
+        // jika bukan menggunakan jenis pelayanan yg selectbox
+        if($level == '0')
+        {
+            $pelayanan = $jenis_pelayanan_hide;
+        }
         
         // ketika id = new maka Save
         // jika bukan maka update
         
         $data_save = [
-            'jenis_pelayanan_id' => $jenis_pelayanan,
+            'jenis_pelayanan_id' => $pelayanan,
             'nik'                => $nik,
             'nama'               => $nama,
             'keperluan'          => $keperluan,
@@ -120,7 +131,15 @@ class Pelayanan extends CI_Controller
         }
         else
         {
-            $data_save['status'] = $status;
+
+            // jika level admindesa
+            // maka update status
+            if($level == '0')
+            {
+                $data_save['status'] = $status;
+                $pelayanan = $jenis_pelayanan_hide;
+            }
+
             $save = $this->pelayanan_model->update($data_save, $id);
         }
         
@@ -143,6 +162,36 @@ class Pelayanan extends CI_Controller
         output_json($response);
          
         
+    }
+
+    /**
+     * Delete Pelayanan
+     */
+    public function delete()
+    {
+        // post & data
+        $id = $this->input->post('id');
+        
+        // delete
+        $delete = $this->pelayanan_model->delete($id);
+        
+        // cek hapus data untuk response notify.js
+        if($delete)
+        {
+            $response = [
+                'message' => 'pelayanan berhasil dihapus',
+                'status'  => 'success'
+            ];
+        }
+        else
+        {
+            $response = [
+                'message' => 'pelayanan gagal dihapus',
+                'status'  => 'error'
+            ];
+        }
+        
+        output_json($response);
     }
 }
 ?>

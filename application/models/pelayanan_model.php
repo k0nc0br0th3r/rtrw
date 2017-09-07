@@ -54,26 +54,22 @@ class Pelayanan_model extends CI_Model
     /**
      * Get data dinamis pelayanan
      */
-    public function get_data_advance($id = '', $nama = '', $parent = '' ,  $order = '', $limit = '', $offset = '')
+    public function get_data_advance($id = '', $jenis_pelayanan_id = '', $order = '', $limit = '', $offset = '')
 	{
 		$sql = $this->db;
 
-		$sql->select('*');
-		$sql->from($this->jenis_table);
+		$sql->select('p.*, jp.nama_pelayanan, jp.parent as parent_pelayanan');
+		$sql->from($this->table.' p');
+		$sql->join($this->jenis_table.' jp', 'jp.jenis_pelayanan_id = p.jenis_pelayanan_id', 'inner');
 
 		if($id != '')
 		{
-			$sql->where($this->jenis_table_id, $id);
+			$sql->where($this->table_id, $id);
 		}
 
-		if($nama != '')
+		if($jenis_pelayanan_id != '')
 		{
-			$sql->like('nama_pelayanan', $nama);
-		}
-		
-		if($parent != '')
-		{
-			$sql->where('parent', $parent);
+			$sql->where('jenis_pelayanan_id', $jenis_pelayanan_id);
 		}
 		
 		if($order != '')

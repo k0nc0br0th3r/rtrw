@@ -7,8 +7,8 @@
             <div class="dashboard-stat2 bordered">
                 <div class="display">
                     <div class="number">
-                        <h3 class="font-green-sharp">
-                            <span data-counter="counterup" data-value="7800">0</span>
+                        <h3 class="font-green-sharp count-surket">
+                            <!-- <span data-counter="counterup" data-value="0">0</span> -->
                         </h3>
                         <small>SURAT KETERANGAN</small>
                     </div>
@@ -32,8 +32,8 @@
             <div class="dashboard-stat2 bordered">
                 <div class="display">
                     <div class="number">
-                        <h3 class="font-red-haze">
-                            <span data-counter="counterup" data-value="1349">0</span>
+                        <h3 class="font-red-haze count-surpengantar">
+                            <!-- <span data-counter="counterup" data-value="1349">0</span> -->
                         </h3>
                         <small>SURAT PENGANTAR</small>
                     </div>
@@ -57,8 +57,8 @@
             <div class="dashboard-stat2 bordered">
                 <div class="display">
                     <div class="number">
-                        <h3 class="font-blue-sharp">
-                            <span data-counter="counterup" data-value="567">0</span>
+                        <h3 class="font-blue-sharp count-surpernyataan">
+                            <!-- <span data-counter="counterup" data-value="567">0</span> -->
                         </h3>
                         <small>SURAT PERNYATAAN</small>
                     </div>
@@ -210,6 +210,14 @@
 <script type="text/javascript">
     var elBoxRubrik = '.count-rubrik';
     var UrlCountRubrik = window.APP.siteUrl + 'dashboard/count_rubrik';
+    var elBoxSurket = '.count-surket';
+    var UrlCountSurket = window.APP.siteUrl + 'dashboard/counter_box?id=1';
+    var elBoxPengantar = '.count-surpengantar';
+    var UrlCountPengantar = window.APP.siteUrl + 'dashboard/counter_box?id=2';
+    var elBoxPernyataan = '.count-surpernyataan';
+    var UrlCountPernyataan = window.APP.siteUrl + 'dashboard/counter_box?id=3';
     window.DASHBOARD.handleCount(UrlCountRubrik, elBoxRubrik);
-    window.DASHBOARD.handleCounterUp;
+    window.DASHBOARD.handleCount(UrlCountSurket, elBoxSurket);
+    window.DASHBOARD.handleCount(UrlCountPengantar, elBoxPengantar);
+    window.DASHBOARD.handleCount(UrlCountPernyataan, elBoxPernyataan);
 </script>

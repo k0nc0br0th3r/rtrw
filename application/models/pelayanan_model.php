@@ -112,5 +112,24 @@ class Pelayanan_model extends CI_Model
 		return $this->db->delete($this->table);
 	}
 	
+	// counter pelayanan harian
+	public function counter($jenis_pelayanan_id = '')
+	{
+		$sql = $this->db;
+
+		$sql->select('p.*, jp.nama_pelayanan, jp.parent as parent_pelayanan');
+		$sql->from($this->table.' p');
+		$sql->join($this->jenis_table.' jp', 'jp.jenis_pelayanan_id = p.jenis_pelayanan_id', 'inner');
+
+		if($jenis_pelayanan_id != '')
+		{
+			$sql->where('jp.parent', $jenis_pelayanan_id);
+		}
+
+		$sql->like('p.tgl_entri', date('Y-m-d'));
+
+		$get = $sql->get();
+		return $get;
+	}
 }
 ?>

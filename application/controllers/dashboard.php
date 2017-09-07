@@ -85,6 +85,20 @@ class Dashboard extends CI_Controller {
 		}
 		output_json($response);
 	}
+
+	public function counter_box()
+	{
+		$this->load->model('pelayanan_model');
+		$response = array();
+		$date = date('Y-m-d');
+		$id_jenis_layanan = $this->input->get('id');
+		// where data jenis layanan surak keterangan
+		$data = $this->pelayanan_model->counter($id_jenis_layanan);
+		if ($data) {
+			$response['count'] = $data->num_rows();
+		}
+		output_json($response);
+	}
 }
 
 /* End of file welcome.php */

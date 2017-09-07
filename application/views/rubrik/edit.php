@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                             <div class="form-group form-md-line-input">
-                                <label class="col-md-3 control-label" for="form_control_1">Aaktifkan rubrik ini?
+                                <label class="col-md-3 control-label" for="form_control_1">Aktifkan rubrik ini?
                                 </label>
                                 <div class="col-md-9">
                                     <label>

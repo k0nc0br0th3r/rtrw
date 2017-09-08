@@ -28,6 +28,13 @@
                         <i class="icon-layers font-green"></i>
                         <span class="caption-subject font-green sbold uppercase">Rubrik Warga Desa Tani Mulya</span>
                     </div>
+
+                    <div class="actions">
+                        <a class="btn btn-default" href="<?php echo site_url('page/rubrik_warga'); ?>">
+                            <i class="icon-reload"></i>
+                            Kembali
+                        </a>    
+                    </div>
                 </div>
                 <div class="portlet-body">
                     <!-- BEGIN FORM-->

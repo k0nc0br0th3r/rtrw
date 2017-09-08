@@ -18,33 +18,18 @@ class Rubrik_model extends CI_Model
 	/**
 	 * Get data dinamis
 	 */
-	public function get_data_advance($id = '', $nama = '', $status = '', $user_id = '', $order = '', $limit = '', $offset = '')
+	public function get_data_advance($where = '', $order = '', $limit = '', $offset = '')
 	{
 		$sql = $this->db;
 
 		$sql->select('*');
 		$sql->from($this->table);
 
-		if($id != '')
+		if($where != '')
 		{
-			$sql->where($this->table_id, $id);
+			$sql->where($where);
 		}
 
-		if($nama != '')
-		{
-			$sql->like($this->nama, $nama);
-		}
-        
-        if($status != '')
-		{
-			$sql->like($this->status, $status);
-		}
-		
-		if($user_id != '')
-		{
-			$sql->where($this->user_id, $user_id);
-		}
-		
 		if($order != '')
 		{
 			$sql->order_by($order);

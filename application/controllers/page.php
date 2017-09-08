@@ -129,12 +129,36 @@ class Page extends CI_Controller {
 	}
 	
 	/**
-	 * Frontend Rubrik Page
+	 * Frontend List Rubrik Page
 	 *
 	 * @author Hikmahtiar <hikmahtiar.cool@gmail.com>
 	 * @return HTML
 	 */
 	public function rubrik_warga()
+	{	
+		// data
+		$order = 'tgl_kirim DESC';
+		$where = [
+			'status' => 1,
+			'reply'  => 1
+		];
+		$data_rubrik = $this->rubrik_model->get_data_advance($where, $order)->result();
+
+
+		// view
+		$data['data_rubrik'] = $data_rubrik;
+		$data['konten'] = 'frontend/rubrik/list';
+		$this->load->view('template', $data);
+		$this->load->view('footer/foot_beranda');
+	}
+
+	/**
+	 * Frontend Rubrik Page
+	 *
+	 * @author Hikmahtiar <hikmahtiar.cool@gmail.com>
+	 * @return HTML
+	 */
+	public function kirim_rubrik_warga()
 	{	
 		$data['konten'] = 'frontend/rubrik/index';
 		$this->load->view('template', $data);

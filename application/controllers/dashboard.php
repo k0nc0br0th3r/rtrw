@@ -69,7 +69,14 @@ class Dashboard extends CI_Controller {
 	public function notif_ide()
 	{
 		$response = array();
-		$data = $this->supermodel->getData('gagasan', array('reply'=>0));
+		$where = array();
+		if ($this->session->userdata('level') != 0) {
+			$where['reply'] = 1;
+			$where['user_id'] = $this->session->userdata('user_id');
+		} else {
+			$where['reply'] = 0;
+		}
+		$data = $this->supermodel->getData('gagasan', $where);
 		if ($data) {
 			$response['count'] = $data->num_rows();
 		}

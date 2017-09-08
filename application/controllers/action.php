@@ -5,11 +5,11 @@ class Action extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('supermodel');
 	}
 
 	function login()
 	{
-		$this->load->model('supermodel');
 		$this->form_validation->set_rules('username','username','required');
 		$this->form_validation->set_rules('password','password','required');
 		if ($this->form_validation->run()===TRUE) {
@@ -50,8 +50,6 @@ class Action extends CI_Controller {
 
 	function statis($id)
 	{
-		$this->load->model('supermodel');
-
 		// begin simpan
 		$this->form_validation->set_rules('judul','judul','required');
 		$this->form_validation->set_rules('deskripsi','deskripsi','required');
@@ -96,7 +94,6 @@ class Action extends CI_Controller {
 
 	function statis_gambar($id)
 	{
-		$this->load->model('supermodel');
 		$get = $this->supermodel->getData('statis', array('statis_id'=>$id))->row();
 		if($get->foto!="") {
 			@unlink('./uploads/statis/'.$get->foto);
@@ -109,12 +106,11 @@ class Action extends CI_Controller {
 
 	function new_page()
 	{
-		$this->load->model('supermodel');
-
 		// begin simpan
 		$this->form_validation->set_rules('judul','judul','required');
 		$this->form_validation->set_rules('des','deskripsi','required');
 		if($this->form_validation->run()===TRUE) {
+			$is['user_id'] = $this->session->userdata('user_id');
 			$is['judul'] = $this->input->post('judul');
 			$is['deskripsi'] = $this->input->post('des');
 			$is['tgl_entri'] = date('Y-m-d H:i:s');
@@ -156,7 +152,6 @@ class Action extends CI_Controller {
 
 	function hapus_statis($id)
 	{
-		$this->load->model('supermodel');
 		$cek = $this->supermodel->getData('statis', array('statis_id'=>$id))->row();
 		$judul = $cek->judul;
 			if($cek->foto!='') {

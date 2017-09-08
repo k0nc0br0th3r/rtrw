@@ -150,9 +150,9 @@
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user dropdown-dark">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <span class="username username-hide-on-mobile"> 
+                                <span class="username "> 
                                 <?php echo $this->session->userdata('nama_lgkp') ?> </span>
-                                <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
+                                <!-- username-hide-on-mobile DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
                                 <img alt="user" class="img-circle" src="<?php echo base_url('uploads/profile/'.$this->session->userdata('foto')) ?>" /> 
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">

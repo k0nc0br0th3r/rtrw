@@ -22,13 +22,12 @@
                         <tr>
                             <th > NO. </th>
                             <?php if($this->session->userdata('level') == 0 ): ?>
+                                <th> Tgl Kirim</th>
                                 <th> RW </th>
                             <?php endif ?>
                             <th> RT </th>
                             <th> NIK </th>
                             <th> Nama Lengkap </th>
-                            <th> Keperluan </th>
-                            <th> No. Telpon </th>
                             <th> Nama Layanan </th>
                             <th> Status </th>
                             <th> Tools </th>
@@ -40,13 +39,12 @@
                                 <tr class="odd gradeX">
                                     <td align="right" style="width: 15px;"><?php echo $no;?></td>
                                     <?php if($this->session->userdata('level') == 0 ): ?>
+                                        <td><?php echo $row->tgl_entri ?></td>
                                         <td><?php echo $row->rw;?></td>
                                     <?php endif ?>
                                     <td><?php echo $row->rt;?></td>
                                     <td><?php echo $row->nik;?></td>
                                     <td><?php echo $row->nama;?></td>
-                                    <td><?php echo $row->keperluan;?></td>
-                                    <td><?php echo $row->no_telp;?></td>
                                     <td><?php echo $row->nama_pelayanan;?></td>
                                     <td style="font-size: 11px;"><?php echo get_status_pelayanan($row->status) ;?></td>
                                     <td>

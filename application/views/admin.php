@@ -202,11 +202,28 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo site_url('pelayanan') ?>" class="ajaxify nav-link pelayanan-back">
-                            <i class="icon-speech"></i>
-                            <span class="title">Pelayanan</span>
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-envelope-open"></i>
+                            <span class="title">Pelayanan Desa</span>
+                            <span class="arrow"></span>
                         </a>
+                        <ul class="sub-menu">
+                        <!-- cek data pelayanan -->
+                        <?php if(get_data_for_pelayanan()) : ?>
+                            <?php foreach(get_data_for_pelayanan() as $row_pelayanan) : ?>
+                                <li class="nav-item">
+                                    <a href="<?php echo site_url('pelayanan/index/'.$row_pelayanan->jenis_pelayanan_id) ?>" class="ajaxify nav-link pelayanan-back<?php echo $row_pelayanan->jenis_pelayanan_id; ?>">
+                                        <i class="icon-envelope-letter"></i>
+                                        <span class="title"><?php echo $row_pelayanan->nama_pelayanan; ?></span>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                        </ul>
+
+
                     </li>
+
                     <?php
                     if($this->session->userdata('level')==0):
                     ?>

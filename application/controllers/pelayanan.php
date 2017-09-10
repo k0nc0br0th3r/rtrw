@@ -25,30 +25,47 @@ class Pelayanan extends CI_Controller
      *
      * @return HTML
      */
-    public function index()
+    public function index($jenis_pelayanan_id = '')
     {
         // data 
-        $get_data = $this->pelayanan_model->get_data_advance()->result();
+        $where = [
+            'parent' => $jenis_pelayanan_id
+        ];
+        $get_data = $this->pelayanan_model->get_data_advance($where)->result();
+        $nama_pelayanan = '';
+
+        // jika jenis pelayanan ada 
+        // maka nama pelayanan sesuai yg dipilih
+        if($jenis_pelayanan_id != '')
+        {
+            $jenis_pelayanan = $this->pelayanan_model->get_jenis_advance($jenis_pelayanan_id)->row();
+            $nama_pelayanan = ($jenis_pelayanan) ? $jenis_pelayanan->nama_pelayanan : '';
+        }
         
         // view
         $data['get_data'] = $get_data;
+        $data['parent_pelayanan'] = $jenis_pelayanan_id;
+        $data['nama_pelayanan'] = $nama_pelayanan;
         $this->load->view('pelayanan_/index', $data);
     }
     
     /**
      * Edit Page
      */
-    public function edit($id = '')
+    public function edit($id = '', $jenis_pelayanan_id = '')
     {
         // get data
+        $where = [
+            'pelayanan_id' => $id
+        ];
         $data_jenis = $this->pelayanan_model->get_jenis_advance('', '', '0')->result();
-        $get_data = $this->pelayanan_model->get_data_advance($id)->row_array();
+        $get_data = $this->pelayanan_model->get_data_advance($where)->row_array();
         
         // view
         $data['id'] = $id;
         $data['rowdat'] = $get_data;
         $data['data_jenis'] = $data_jenis;
-        
+        $data['parent_pelayanan'] = $jenis_pelayanan_id;
         $this->load->view('pelayanan_/edit', $data);
     }
     

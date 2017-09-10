@@ -60,7 +60,7 @@ window.PELAYANAN = (function($) {
         },
         
         // hapus data
-        handleDelete : function() {
+        handleDelete : function(jenisPelayananId) {
             var parentThis = this;
             
             $(parentThis.elDelete).click(function() {
@@ -78,7 +78,7 @@ window.PELAYANAN = (function($) {
                             // redirect to list berita jika success
                             if(response.status == 'success') {    
                                 setTimeout(function() {
-                                    $(parentThis.elBack).click();
+                                    $(parentThis.elBack+jenisPelayananId).click();
                                 }, 1000);
                             }
                         }
@@ -96,13 +96,12 @@ window.PELAYANAN = (function($) {
             // maka menjalankan get nama pelayanan
 
             var pelayananId = $(parentThis.elPelayananId).val();
-            if(pelayananId != 'new') {
-                getNamaPelayanan();
-            }
             
-            $(parentThis.elJenisPelayanan).change(function() {
-                getNamaPelayanan();
-            });
+            
+            getNamaPelayanan();
+            // $(parentThis.elJenisPelayanan).change(function() {
+            //     getNamaPelayanan();
+            // });
 
             function getNamaPelayanan() {
                 $.ajax({
@@ -131,7 +130,9 @@ window.PELAYANAN = (function($) {
                         
                         $(parentThis.elNamaPelayanan).html(html);
                         
-                        $(parentThis.elForm).valid();
+                        if(pelayananId != 'new') {
+                            $(parentThis.elForm).valid();
+                        }
                     }
                 });
             }

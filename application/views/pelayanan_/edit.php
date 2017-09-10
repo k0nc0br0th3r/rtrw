@@ -21,7 +21,7 @@ if($this->session->userdata('level') == '0')
                     <span class="caption-subject font-red sbold uppercase">Sunting Pelayanan </span>
                 </div>
                 <div class="actions">
-                    <a class="btn btn-default ajaxify pelayanan-back" href="<?php echo site_url('pelayanan'); ?>">
+                    <a class="btn btn-default ajaxify pelayanan-back" href="<?php echo site_url('pelayanan/index/'.$parent_pelayanan); ?>">
                         <i class="icon-reload"></i> Kembali
                     </a>
                 </div>
@@ -40,7 +40,7 @@ if($this->session->userdata('level') == '0')
                                 
                                 <div class="col-md-5">
                                     
-                                    <div class="form-group form-md-line-input">
+                                    <!-- <div class="form-group form-md-line-input">
                                         <label class="control-label">Jenis Pelayanan
                                             <span class="required">*</span>
                                         </label>
@@ -56,7 +56,9 @@ if($this->session->userdata('level') == '0')
                                                 <?php endforeach; ?>
                                             <?php endif; ?>
                                         </select>
-                                    </div>
+                                    </div> -->
+
+                                    <input class="pelayanan-jenis" value="<?php echo $parent_pelayanan; ?>" type="hidden">
 
                                     <input id="pelayanan-jenis-hide" name="jenis_pelayanan_hide" type="hidden" value="<?php echo check_array_exists($rowdat, 'jenis_pelayanan_id'); ?>">
                                     
@@ -197,38 +199,5 @@ if($this->session->userdata('level') == '0')
 // 
 // handleForm
 window.PELAYANAN.handleForm();
-
 window.PELAYANAN.handleNamaPelayanan();
-// 
-// $('#forms').on('submit', function(e) {
-//     e.preventDefault();
-//     var pageContent = $('.page-content .page-content-body');
-//     App.startPageLoading({animate: true});
-//     $.ajax({
-//         url : $(this).attr('action'),
-//         type : "POST",
-//         data : $(this).serialize(),
-//         cache : false,
-//         success : function(data) {
-//             App.stopPageLoading();
-//             pageContent.html(data);
-//             Layout.fixContentHeight(); // fix content height
-//             App.initAjax(); // initialize core stuff
-//         },
-//         error: function (data, ajaxOptions, thrownError) {
-//             App.stopPageLoading();
-//             pageContent.html('<h4>Could not load the requested content.</h4>');
-//         }
-//     });
-// });
-// 
-// $(function() {
-//     CKEDITOR.replace( 'deskripsi' );
-//     setInterval(loadText, 100);
-// });
-// 
-// function loadText() {
-//     var editorText = CKEDITOR.instances.deskripsi.getData();
-//     $("#des").val(editorText);
-// }
 </script>

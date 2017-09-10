@@ -416,4 +416,18 @@ function upload_file($path=null, $name=null, $rename=null, $allowed_types = '')
 	 return strtotime(date('Y-m-d H:i:s'));
  }
 
+
+/**
+ * Data Untuk menu pelayanan
+ */
+function get_data_for_pelayanan()
+{
+    $ci =& get_instance();
+
+    // load model and return data 
+    // where parent = 0
+    $ci->load->model('pelayanan_model');
+    return $ci->pelayanan_model->get_jenis_advance('', '', '0')->result();
+}
+
 ?>

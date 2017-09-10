@@ -6,11 +6,11 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class=" icon-layers font-green"></i>
-                    <span class="caption-subject font-green sbold uppercase">List Pelayanan</span>
+                    <span class="caption-subject font-green sbold uppercase">List Pelayanan - <?php echo $nama_pelayanan; ?></span>
                 </div>
                 <?php if($this->session->userdata('level') > 0 ): ?>
                 <div class="actions">
-                    <a class="btn btn-default ajaxify" href="<?php echo site_url('pelayanan/edit/new') ?>">
+                    <a class="btn btn-default ajaxify" href="<?php echo site_url('pelayanan/edit/new/'.$parent_pelayanan) ?>">
                         <i class="icon-user-follow"></i> Tambah Pelayanan
                     </a>
                 </div>
@@ -48,7 +48,7 @@
                                     <td><?php echo $row->nama_pelayanan;?></td>
                                     <td style="font-size: 11px;"><?php echo get_status_pelayanan($row->status) ;?></td>
                                     <td>
-                                        <a class="ajaxify btn btn-warning btn-sm" href="<?php echo site_url('pelayanan/edit/'.$row->pelayanan_id); ?>" title="Edit Data">
+                                        <a class="ajaxify btn btn-warning btn-sm" href="<?php echo site_url('pelayanan/edit/'.$row->pelayanan_id.'/'.$parent_pelayanan); ?>" title="Edit Data">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         <?php if($this->session->userdata('level') > 0 ): ?>
@@ -71,6 +71,6 @@
 <!-- END CONTENT HEADER -->
 <script src="<?php echo base_url('assets/apps/scripts/admin/pelayanan.js?'.time_now()) ?>" type="text/javascript"></script>
 <script type="text/javascript">
-    window.PELAYANAN.handleDelete();
+    window.PELAYANAN.handleDelete("<?php echo $parent_pelayanan; ?>");
     $("#pelayanan-table").dataTable({"bStateSave": true});
 </script>

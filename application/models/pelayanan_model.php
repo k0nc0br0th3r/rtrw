@@ -54,7 +54,7 @@ class Pelayanan_model extends CI_Model
     /**
      * Get data dinamis pelayanan
      */
-    public function get_data_advance($id = '', $jenis_pelayanan_id = '', $order = '', $limit = '', $offset = '')
+    public function get_data_advance($where = '', $order = '', $limit = '', $offset = '')
 	{
 		$sql = $this->db;
 
@@ -62,14 +62,9 @@ class Pelayanan_model extends CI_Model
 		$sql->from($this->table.' p');
 		$sql->join($this->jenis_table.' jp', 'jp.jenis_pelayanan_id = p.jenis_pelayanan_id', 'inner');
 
-		if($id != '')
+		if($where != '')
 		{
-			$sql->where($this->table_id, $id);
-		}
-
-		if($jenis_pelayanan_id != '')
-		{
-			$sql->where('jenis_pelayanan_id', $jenis_pelayanan_id);
+			$sql->where($where);
 		}
 		
 		if($order != '')

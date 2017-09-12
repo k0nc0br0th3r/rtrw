@@ -230,7 +230,7 @@ class Page extends CI_Controller {
 		{
 			// data
 			$order = 'tgl_entri DESC';
-			$get_data = $this->news_model->get_data_advance('', '', 1, '', $order, 6, 0)->result();
+			$get_data = $this->news_model->get_data_advance('', '', 1, '', $order)->result();
 			$konten = 'frontend/page/index';
 
 		}
@@ -260,7 +260,7 @@ class Page extends CI_Controller {
 		{
 			// data
 			$order = 'tgl_entri DESC';
-			$get_data = $this->info_model->get_data_advance('', '', 1, '', $order, 6, 0)->result();
+			$get_data = $this->info_model->get_data_advance('', '', 1, '', $order)->result();
 			$konten = 'frontend/info/index';
 
 		}

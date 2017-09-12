@@ -2,3 +2,7 @@ div.error {
     color: red !important;
     font-size: 11px;
 }
+
+.box-news, .box-info {
+	display: none;
+}

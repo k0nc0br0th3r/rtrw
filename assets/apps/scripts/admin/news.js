@@ -5,7 +5,9 @@ window.NEWS = (function($) {
         elForm : '.news-form',
         elBack : '.news-back',
         elDelete : '.news-delete',
-        
+        elBox : '.box-news',
+        elBtnMore : '.btn-news-more',
+
         // handle penyimpanan data
         handleForm : function() {
             var parentThis = this;
@@ -65,6 +67,25 @@ window.NEWS = (function($) {
                     });
                 }
                 
+            });
+        },
+
+        // handle load more
+        handleLoadmore : function() {
+            var parentThis = this;
+
+            $(parentThis.elBox).slice(0, 4).show();
+            $(parentThis.elBtnMore).on('click', function (e) {
+                e.preventDefault();
+                $(parentThis.elBox + ":hidden").slice(0, 4).slideDown();
+
+                if ( $(parentThis.elBox + ":hidden").length == 0) {
+                    $(parentThis.elBtnMore).fadeOut('slow');
+                }
+
+                $('html,body').animate({
+                    scrollTop: $(this).offset().top
+                }, 1500);
             });
         }
     }

@@ -27,7 +27,7 @@
                 <?php  foreach($get_data as $row_data): ?>
                 
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 box-news">
                         <div class="blog-post-lg bordered blog-container" style="border: 1px solid #DDD;">
                             <div class="blog-img-thumb" style="max-height: 250px;">
                                 <a href="<?php echo site_url('page/news/'.$row_data->berita_id); ?>">
@@ -74,9 +74,19 @@
                     </div>
 
                 <?php endforeach; ?>
+
             <?php endif; ?>
         
+        </div>
+
+        <div class="row">
+            <center><a href="#" class="btn-news-more btn green-haze">Load More</a></center>
         </div>
     </div>
 
 </div>
+
+<script src="<?php echo base_url('assets/apps/scripts/admin/news.js') ?>" type="text/javascript"></script>
+<script type="text/javascript">
+    window.NEWS.handleLoadmore();
+</script>

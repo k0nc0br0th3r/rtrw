@@ -6,6 +6,7 @@ class Statis extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_content');
+		$this->load->model('news_model');
 	}
 
 	function page()
@@ -13,7 +14,9 @@ class Statis extends CI_Controller {
 		$id = $this->input->get('id');
 		if ($id) {
 			# code...
+			$order = 'tgl_entri desc';
 			$select = 's.*, u.nama_lgkp';
+			$data['berita'] = $this->news_model->get_data_advance('','', 1,'', $order, 6, 0);
 			$data['row'] = $this->m_content->getDataStatis($select, array('statis_id'=>$id))->row_array();
 			$data['konten'] = "statis/page";
 			$this->load->view('template', $data);

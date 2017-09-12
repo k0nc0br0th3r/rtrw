@@ -62,60 +62,24 @@
             <div class="col-lg-3">
                 <div class="blog-single-sidebar bordered blog-container">
                     <div class="blog-single-sidebar-links">
-                        <h3 class="blog-sidebar-title uppercase">Useful Links</h3>
+                        <h3 class="blog-sidebar-title uppercase">Berita Desa</h3>
                         <ul>
+                        <?php
+                        if ($berita) {
+                            foreach ($berita->result_array() as $rows) {
+                        ?>
                             <li>
-                                <a href="javascript:;">Lorem Ipsum </a>
+                                <a href="javascript:;"> <?php echo $rows['judul'] ?> </a>
                             </li>
-                            <li>
-                                <a href="javascript:;">Dolore Amet</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">Metronic Database</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">UI Features</a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">Advanced Forms</a>
-                            </li>
+                        <?php
+                            }
+                        }
+                        ?>
                         </ul>
                     </div>
-                    <div class="blog-single-sidebar-ui">
-                        <h3 class="blog-sidebar-title uppercase">UI Examples</h3>
-                        <div class="row ui-margin">
-                            <div class="col-xs-4 ui-padding">
-                                <a href="javascript:;">
-                                    <img src="<?php echo base_url() ?>assets/pages/img/background/1.jpg" />
-                                </a>
-                            </div>
-                            <div class="col-xs-4 ui-padding">
-                                <a href="javascript:;">
-                                    <img src="<?php echo base_url() ?>assets/pages/img/background/37.jpg" />
-                                </a>
-                            </div>
-                            <div class="col-xs-4 ui-padding">
-                                <a href="javascript:;">
-                                    <img src="<?php echo base_url() ?>assets/pages/img/background/57.jpg" />
-                                </a>
-                            </div>
-                            <div class="col-xs-4 ui-padding">
-                                <a href="javascript:;">
-                                    <img src="<?php echo base_url() ?>assets/pages/img/background/53.jpg" />
-                                </a>
-                            </div>
-                            <div class="col-xs-4 ui-padding">
-                                <a href="javascript:;">
-                                    <img src="<?php echo base_url() ?>assets/pages/img/background/59.jpg" />
-                                </a>
-                            </div>
-                            <div class="col-xs-4 ui-padding">
-                                <a href="javascript:;">
-                                    <img src="<?php echo base_url() ?>assets/pages/img/background/42.jpg" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <p>
+                        <a href="<?php echo site_url('page/news') ?>">Lebih banyak lagi</a>
+                    </p>
                 </div>
             </div>
         </div>

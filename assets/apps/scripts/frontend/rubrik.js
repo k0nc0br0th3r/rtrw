@@ -10,6 +10,8 @@ window.RUBRIK = (function($) {
         elForm : '.rubrik-form',
         elImgCaptcha : '.rubrik-captcha',
         elReloadImgCaptcha : '.rubrik-reload-captcha',
+        elBox : '.box-rubrik',
+        elBtnMore : '.btn-rubrik-more',
         
         handleForm : function() {
             var parentThis = this;
@@ -72,6 +74,25 @@ window.RUBRIK = (function($) {
                 // merubah img captcha
                 d = new Date();
                 $(parentThis.elImgCaptcha).attr('src', $(_this).attr('href') + '?' + d.getTime());
+            });
+        },
+
+        // handle load more
+        handleLoadmore : function() {
+            var parentThis = this;
+
+            $(parentThis.elBox).slice(0, 4).show();
+            $(parentThis.elBtnMore).on('click', function (e) {
+                e.preventDefault();
+                $(parentThis.elBox + ":hidden").slice(0, 4).slideDown();
+
+                if ( $(parentThis.elBox + ":hidden").length == 0) {
+                    $(parentThis.elBtnMore).fadeOut('slow');
+                }
+
+                $('html,body').animate({
+                    scrollTop: $(this).offset().top
+                }, 1500);
             });
         }
         

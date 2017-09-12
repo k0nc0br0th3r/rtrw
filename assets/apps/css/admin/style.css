@@ -3,6 +3,6 @@ div.error {
     font-size: 11px;
 }
 
-.box-news, .box-info {
+.box-news, .box-info, .box-rubrik {
 	display: none;
 }

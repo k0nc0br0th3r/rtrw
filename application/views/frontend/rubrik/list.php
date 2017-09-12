@@ -42,7 +42,7 @@
                     <?php if($data_rubrik): ?>
                         <?php foreach($data_rubrik as $row_rubrik) : ?>
 
-                            <div class="well">
+                            <div class="well box-rubrik">
                                 <ul class="chats">
                                     <li class="in">
                                         <img class="avatar" src="<?php echo base_url('assets/layouts/layout4/img/avatar.png'); ?>">
@@ -74,6 +74,9 @@
                             </div>
 
                         <?php endforeach; ?>
+
+                        <center><a href="" class="btn-rubrik-more btn green-haze">Load More</a></center>
+
                     <?php endif; ?>
 
                 </div>
@@ -82,3 +85,8 @@
         </div>
     </div>
 </div>
+
+<script src="<?php echo base_url() ?>assets/apps/scripts/frontend/rubrik.js" type="text/javascript"></script>
+<script type="text/javascript">
+    window.RUBRIK.handleLoadmore();
+</script>

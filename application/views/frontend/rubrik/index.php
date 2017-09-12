@@ -113,9 +113,6 @@
     <!-- END CONTENT HEADER -->
 </div>
 
-<!-- custom css -->
-<link href="<?php echo base_url('assets/apps/css/admin/style.css') ?>" rel="stylesheet" type="text/css" />
-
 <!-- notify -->
 <link href="<?php echo base_url('bower_components/notify/notify.css') ?>" rel="stylesheet" type="text/css" />
 <script src="<?php echo base_url('bower_components/notify/notify.js') ?>" type="text/javascript"></script>

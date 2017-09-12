@@ -93,11 +93,11 @@
                             }
                             ?>
                             
-                            <div class="blog-banner blog-container" style="background-image:url(<?php echo $style_statis; ?>)">
+                            <div class="blog-banner blog-container" style="background-image:url(<?php echo $style_statis; ?>); height:270px;">
                                 <h2 class="blog-title blog-banner-title">
-                                    <a href="<?php echo site_url('statis/page?id='.$data_statis->statis_id); ?>">
-                                        <?php echo $data_statis->judul; ?>
-                                    </a>
+                                    <!-- <a href="<?php // echo site_url('statis/page?id='.$data_statis->statis_id); ?>">
+                                        <?php // echo $data_statis->judul; ?>
+                                    </a> -->
                                 </h2>
                             </div>
                         <?php endif; ?>

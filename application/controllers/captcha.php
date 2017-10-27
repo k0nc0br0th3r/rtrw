@@ -8,12 +8,13 @@ class Captcha extends CI_Controller
         $sess = '';         
         // membuat gambar dengan menentukan ukuran
         $gbr = imagecreate(150, 40);
-         
+
         //warna background captcha
-        imagecolorallocate($gbr, 69, 179, 157);
+        imagecolorallocate($gbr, rand(0, 255), rand(0, 255), rand(0, 255));
+
          
         // pengaturan font captcha
-        $color = imagecolorallocate($gbr, 253, 252, 252);
+        $color = imagecolorallocate($gbr, rand(0, 255), rand(0, 255), rand(0, 255));
         $font = FCPATH."system/fonts/texb.ttf"; 
         $ukuran_font = 20;
         $posisi = 32;

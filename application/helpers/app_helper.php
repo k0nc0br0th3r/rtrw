@@ -430,4 +430,26 @@ function get_data_for_pelayanan()
     return $ci->pelayanan_model->get_jenis_advance('', '', '0')->result();
 }
 
+/**
+ * Assets URL
+ */
+function assets_url($url)
+{
+	return base_url($url.'?'.time_now());
+}
+
+
+
+/********************************** GET TIMELINE ********************************/
+function get_timeline_by_parent($timeline_parent = NULL)
+{
+	$ci =& get_instance();
+	$ci->load->model('m_timeline');
+
+	$where_timeline = [
+		'parent' => $timeline_parent
+	];
+
+	return $ci->m_timeline->getData($where_timeline, 'tgl_entri', 'desc')->result();
+}
 ?>

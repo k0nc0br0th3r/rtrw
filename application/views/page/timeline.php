@@ -66,10 +66,43 @@
                                 </div>
                                 <div class="timeline-body-content">
                                     <p class="font-grey-cascade"> <?php echo $rows->pesan ?> </p>
+
+
+                                    <?php $get_comment = get_timeline_by_parent($rows->timeline_id); ?>
+                                    <?php if($get_comment): ?>
+                                       <div class="box-rubrik font-grey-cascade" style="display: block;">
+                                            <ul class="chats">
+                                                <?php foreach($get_comment as $row_comment): ?>
+                                                    <li class="out">
+                                                        <img class="avatar" src="<?php echo base_url('uploads/profile/'.$row_comment->foto) ?>" >
+                                                        <div class="message">
+                                                            <span class="arrow"> </span>
+                                                            <a href="javascript:;" class="name"> 
+                                                                <?php if($this->session->userdata('user_id') == $row_comment->user_id): ?>
+                                                                    Saya
+                                                                <?php else: ?> 
+                                                                    <?php echo $row_comment->nama_lgkp ?> 
+                                                                <?php endif; ?> 
+
+                                                            </a>
+                                                            <span class="datetime"> 
+                                                                <?php echo convert_tanggal($row_comment->tgl_entri) ?>
+                                                            </span>
+                                                            <span class="body"> 
+                                                                <?php echo $row_comment->pesan ?>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+                                    <?php endif; ?>
+
                                     <div class="form-comment collapse" id="comment<?php echo $rows->timeline_id ?>">
-                                        <form method="post" action="<?php echo site_url() ?>">
+                                        <form class="komentar-form" method="post" action="<?php echo site_url('dashboard/send_comment') ?>">
                                             <div class="form-body">
                                                 <div class="form-group">
+                                                    <input name="timeline_id" type="hidden" value="<?php echo $rows->timeline_id ?>">
                                                     <textarea placeholder="Komentar" class="form-control" name="komentar"></textarea>
                                                 </div>
                                                 <div class="form-group pull-right">
@@ -77,13 +110,6 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        <script type="text/javascript">
-                                        $("#comment<?php echo $rows->timeline_id ?> > form").on('submit', function (e) {
-                                            e.preventDefault();
-                                            var komentar = $(this).find("input[name='komentar']").val();
-                                            alert(komentar);
-                                        });
-                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -97,3 +123,16 @@
     </div>
     <!-- END CONTENT HEADER -->
 
+<link href="<?php echo base_url('bower_components/notify/notify.css') ?>" rel="stylesheet" type="text/css" />
+<script src="<?php echo base_url('bower_components/notify/notify.js') ?>" type="text/javascript"></script>
+
+<!-- Ajax Form -->
+<script src="<?php echo base_url('bower_components/jquery-form/dist/jquery.form.min.js') ?>" type="text/javascript"></script>
+
+<!-- validation -->
+<script src="<?php echo base_url() ?>assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url() ?>assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo assets_url('assets/apps/scripts/rt/timeline.js'); ?>"></script>
+<script type="text/javascript">
+    window.TIMELINE.init();
+</script>

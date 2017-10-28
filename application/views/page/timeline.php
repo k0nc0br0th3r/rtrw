@@ -100,16 +100,19 @@
 
                                     <div class="form-comment collapse" id="comment<?php echo $rows->timeline_id ?>">
                                         <form class="komentar-form" method="post" action="<?php echo site_url('dashboard/send_comment') ?>">
+                                        <!-- <form method="post" action="<?php //echo site_url('dashboard/send_komentar') ?>"> -->
                                             <div class="form-body">
                                                 <div class="form-group">
                                                     <input name="timeline_id" type="hidden" value="<?php echo $rows->timeline_id ?>">
                                                     <textarea placeholder="Komentar" class="form-control" name="komentar"></textarea>
                                                 </div>
                                                 <div class="form-group pull-right">
+                                                    <input type="hidden" name="id" value="<?php echo $rows->timeline_id ?>">
                                                     <button type="submit" class="btn btn-sm green">Kirim</button>
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>

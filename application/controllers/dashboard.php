@@ -24,6 +24,7 @@ class Dashboard extends CI_Controller {
 		];
 
 		$data['timeline'] = $this->m_timeline->getData($where_timeline, 'tgl_entri', 'desc');
+		// $data['timeline'] = $this->m_timeline->getData(array('parent'=>null), 'tgl_entri', 'desc');
 		$data['lastpengumuman'] = $this->supermodel->getData('pengumuman', array('user_id <>'=>$user_id), '', 6, 0);
 		$data['konten'] = $konten;
 		$this->load->view('admin', $data);
@@ -88,6 +89,16 @@ class Dashboard extends CI_Controller {
 
 		output_json($response);
 	}
+// 	function send_komentar()
+// 	{
+// 		$in['pesan'] = trim(mysql_real_escape_string($this->input->post('komentar')));
+// 		$in['tgl_entri'] = date("Y-m-d H:i:s");
+// 		$in['user_id'] = $this->session->userdata('user_id');
+// 		$in['parent'] = $this->input->post('id');
+// 		$this->supermodel->insertData('timeline', $in);
+// 		redirect('dashboard');
+// >>>>>>> update dashboard and timeline
+// 	}
 
 	function del_timeline($id)
 	{
